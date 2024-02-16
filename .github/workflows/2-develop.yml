@@ -1,4 +1,4 @@
-name: "1 - [FEAT] Build & PR to Develop"
+name: "2 - [DEV] Build & Deploy"
 
 on:
   push:
@@ -57,7 +57,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          title: 'PR from ${{ env.BRANCH_NAME }} -> production'
+          title: 'PR from ${{ env.BRANCH_NAME }} -> main'
           commit-message: 'Commit from branch: ${{ env.BRANCH_NAME }}'
           branch: ${{ github.ref }}
           base: 'main'

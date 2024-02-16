@@ -37,7 +37,7 @@ jobs:
           echo test, and deploy your project.
 
   pull-request-on-release:
-    name: PullRequestAction
+    name: open-pr-to-develop
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code

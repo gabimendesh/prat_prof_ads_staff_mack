@@ -18,14 +18,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Change to project directory
-        run: cd frontend-app
-
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd frontend-app
+          npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          cd frontend-app
+          npm run build
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

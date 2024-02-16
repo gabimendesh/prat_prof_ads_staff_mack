@@ -13,8 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: '20'
 
@@ -24,14 +24,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Open PR to develop
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Open PR to develop"
-          title: "Open PR to develop"
-          body: "This PR was automatically opened by a GitHub Action"
-          branch: ${{ github.head_ref }}
-          base: "develop"
-          labels: "automated pr, feature"
-          draft: false
+          title: 'Build: ${GITHUB_SHA}'
+          commit-message: 'Build: ${GITHUB_SHA}'
+          branch: 'build/${GITHUB_SHA}'
+          base: 'develop'

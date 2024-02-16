@@ -47,18 +47,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
-          token: ${{ secrets.PAT }}
-
-      - name: Prune
-        run: |
-          git config --global url."https://${{ secrets.PAT }}@github.com/".insteadOf "https://github.com/"
-          git remote prune origin
 
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PAT }}
           title: 'Build: ${GITHUB_SHA}'
           commit-message: 'Build: ${GITHUB_SHA}'
           branch: ${{ github.ref }}

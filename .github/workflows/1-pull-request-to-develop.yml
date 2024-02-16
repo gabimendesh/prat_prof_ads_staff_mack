@@ -47,9 +47,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
           title: 'Build: ${GITHUB_SHA}'
           commit-message: 'Build: ${GITHUB_SHA}'
-          branch: 'build/${GITHUB_SHA}'
           base: 'develop'
+
+      - name: Check PR
+        run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"

@@ -49,8 +49,8 @@ jobs:
           commit-message: "Open PR to develop"
           title: "Open PR to develop"
           body: "This PR was automatically opened by a GitHub Action"
-          branch: "develop"
-          base: ${{ github.head_ref }}
+          branch: ${{ github.head_ref }}
+          base: "develop"
           labels: "automated pr, feature"
           assignees: "peter-evans"
           reviewers: "peter-evans"

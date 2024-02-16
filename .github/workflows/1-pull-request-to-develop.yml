@@ -36,24 +36,24 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-  pull-request-on-release:
-    name: open-pr-to-develop
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Open PR to develop
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Open PR to develop"
-          title: "Open PR to develop"
-          body: "This PR was automatically opened by a GitHub Action"
-          branch: "develop"
-          base: "feature"
-          labels: "automated pr, feature"
-          assignees: "peter-evans"
-          reviewers: "peter-evans"
-          draft: false
-          signoff: false
-          changes: "This PR was automatically opened by a GitHub Action"
+  pull-request-on-develop:
+  name: open-pr-to-develop
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Open PR to develop
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "Open PR to develop"
+        title: "Open PR to develop"
+        body: "This PR was automatically opened by a GitHub Action"
+        branch: "develop"
+        base: "feature"
+        labels: "automated pr, feature"
+        assignees: "peter-evans"
+        reviewers: "peter-evans"
+        draft: false
+        signoff: false

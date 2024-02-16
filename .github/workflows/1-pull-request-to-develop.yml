@@ -52,6 +52,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ secrets.PAT }}
           title: 'Build: ${GITHUB_SHA}'
           commit-message: 'Build: ${GITHUB_SHA}'
           branch: ${{ github.ref }}

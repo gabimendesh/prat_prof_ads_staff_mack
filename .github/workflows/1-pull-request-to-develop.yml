@@ -40,15 +40,20 @@ jobs:
     name: open-pr-to-develop
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Derive from branch name
-        run: |
-            # do custom parsing of your code / date to derive a branch from
-            PR_BRANCH_FROM=release-v$(cat VERSION)
-            echo "PULL_REQUEST_FROM_BRANCH=${PR_BRANCH_FROM}" >> $GITHUB_ENV
-      - name: pull-request-action
-        uses: vsoch/pull-request-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PULL_REQUEST_BRANCH: "develop"
+      - name: Open PR to develop
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Open PR to develop"
+          title: "Open PR to develop"
+          body: "This PR was automatically opened by a GitHub Action"
+          branch: "develop"
+          base: "feature"
+          labels: "automated pr, feature"
+          assignees: "peter-evans"
+          reviewers: "peter-evans"
+          draft: false
+          signoff: false
+          changes: "This PR was automatically opened by a GitHub Action"

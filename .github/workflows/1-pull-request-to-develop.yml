@@ -45,6 +45,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Create Pull Request
         id: cpr
@@ -52,7 +54,5 @@ jobs:
         with:
           title: 'Build: ${GITHUB_SHA}'
           commit-message: 'Build: ${GITHUB_SHA}'
+          branch: ${{ github.head_ref }}
           base: 'develop'
-
-      - name: Check PR
-        run: echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"

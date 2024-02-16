@@ -50,7 +50,7 @@ jobs:
           title: "Open PR to develop"
           body: "This PR was automatically opened by a GitHub Action"
           branch: "develop"
-          base: "feature/**"
+          base: "feature"
           labels: "automated pr, feature"
           assignees: "peter-evans"
           reviewers: "peter-evans"

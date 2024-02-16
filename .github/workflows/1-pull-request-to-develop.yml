@@ -52,6 +52,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
+          update: true
           title: 'PR from branch: ${GITHUB_REF#refs/heads/}'
           commit-message: 'Commit from branch: ${GITHUB_REF#refs/heads/}'
           branch: ${{ github.ref }}

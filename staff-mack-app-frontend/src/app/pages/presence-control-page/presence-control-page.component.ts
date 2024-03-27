@@ -6,5 +6,34 @@ import { Component } from '@angular/core';
   styleUrl: './presence-control-page.component.scss'
 })
 export class PresenceControlPageComponent {
+  filters = [
+    {
+      name: 'Turma',
+      options: [
+        { label: '1A', value: '1A' },
+        { label: '1B', value: '1B' },
+        { label: '1C', value: '1C' },
+        { label: '1D', value: '1D' }
+      ]
+    },
+    {
+      name: 'Disciplina',
+      options: [
+        { label: 'Matemática', value: 'Matemática' },
+        { label: 'Português', value: 'Português' },
+        { label: 'História', value: 'História' },
+        { label: 'Geografia', value: 'Geografia' }
+      ]
+    },
+    {
+      name: "Ano",
+      options: [
+        { label: '1º', value: '1' },
+        { label: '2º', value: '2' },
+        { label: '3º', value: '3' },
+        { label: '4º', value: '4' }
+      ]
+    }
+  ]
 
 }

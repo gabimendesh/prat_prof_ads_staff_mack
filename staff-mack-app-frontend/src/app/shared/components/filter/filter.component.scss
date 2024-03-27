@@ -1,0 +1,23 @@
+@import "../../../../styles.scss";
+
+.filters {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .filters-item {
+        background-color: $color-gray-secondary;
+        padding: 10px;
+        width: 100%;
+        margin: 16px;
+        border-radius: 10px;
+        text-transform: lowercase;
+        border: none;
+        cursor: pointer;
+
+        &__title {
+            color: $color-gray-medium;
+            text-transform: lowercase;
+        }
+    }
+}

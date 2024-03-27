@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { 
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit, 
+  QueryList, 
+  Renderer2, 
+  ViewChild, 
+  ViewChildren 
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,20 +19,17 @@ export class NavigationMenuComponent implements OnInit, AfterViewInit {
   @ViewChild('navButton') navButton!: ElementRef;
   @ViewChildren('navButton') navButtons!: QueryList<ElementRef>;
   constructor(
-    private el: ElementRef,
     private renderer: Renderer2,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    // setar rota para controle-presenca
     this.router.navigate(['controle-presenca']);
-    
   }
 
   ngAfterViewInit(): void {
-    this.navButton.nativeElement.classList.add('active'); 
-    this.navButtons.forEach((button, index) => { // Add 'index' as a parameter
+    this.navButton.nativeElement.classList.add('active');
+    this.navButtons.forEach((button, index) => {
       this.renderer.listen(button.nativeElement, 'click', () => {
         this.navButtons.forEach(btn => {
           this.renderer.removeClass(btn.nativeElement, 'active');

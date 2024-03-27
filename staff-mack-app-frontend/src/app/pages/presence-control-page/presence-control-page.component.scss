@@ -17,5 +17,18 @@
         padding: 28px;
         border-radius: 30px;
     }
+
+    &__content {
+        display: flex;
+        width: 100%;
+        
+    }
+
+    &__text {
+        &--title {
+            width: max-content;
+        }
+    }
+
     
 }

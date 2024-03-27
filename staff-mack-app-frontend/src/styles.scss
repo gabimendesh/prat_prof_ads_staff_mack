@@ -4,14 +4,18 @@ $color-white: #ffffff;
 $color-orange-primary: #F18900;
 $color-gray-primary: #9197B3;
 
-html, body {
-  background-color: $background-color;
+* {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+// html, body {
+// }
+
 staff-mack-presence-control-page, staff-mack-report-page {
+  background-color: $background-color;
   width: 100%;
+  padding: 40px 32px;
 }

@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+$background-color: #fff3e3;
+$color-white: #ffffff;
+$color-orange-primary: #F18900;
+$color-gray-primary: #9197B3;
+
+html, body {
+  background-color: $background-color;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+staff-mack-presence-control-page, staff-mack-report-page {
+  width: 100%;
+}

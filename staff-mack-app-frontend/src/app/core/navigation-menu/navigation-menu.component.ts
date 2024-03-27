@@ -16,6 +16,8 @@ export class NavigationMenuComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    // setar rota para controle-presenca
+    this.router.navigate(['controle-presenca']);
     
   }
 

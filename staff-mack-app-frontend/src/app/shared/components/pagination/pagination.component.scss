@@ -1,0 +1,28 @@
+ @import "../../../../styles.scss";
+
+  .container-pagination-control {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 270px;
+  
+    button {
+      border: none;
+      margin-right: 12px;
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background-color: #F5F5F5;
+      cursor: pointer;
+    }
+
+    button.active {
+      background-color: $color-orange-primary;
+      color: white;
+    }
+
+    button:hover {
+      filter: brightness(0.9);
+    }
+  }

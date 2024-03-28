@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { studentsMock } from '../../shared/mocks/students-mock/students-mock';
+import { Student } from '../../shared/interfaces/students';
 
 @Component({
   selector: 'staff-mack-presence-control-page',
@@ -35,5 +37,6 @@ export class PresenceControlPageComponent {
       ]
     }
   ]
+  students: Student[] = studentsMock;
 
 }

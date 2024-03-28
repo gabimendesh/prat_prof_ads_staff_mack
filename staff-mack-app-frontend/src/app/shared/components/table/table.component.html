@@ -1,0 +1,42 @@
+<div class="container-table">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of getColumns()">{{ column }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let rowValues of getRows()
+            | slice : (page - 1) * pageSize : page * pageSize
+        "
+      >
+        <td *ngFor="let row of rowValues">{{ row }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <staff-mack-pagination
+    [page]="page"
+    [totalPages]="totalPages"
+    [pageNumbers]="pageNumbers"
+    (pageChange)="page = $event"
+  ></staff-mack-pagination>
+
+  <!-- <div class="container-pagination-control">
+    <button (click)="page = page - 1" [disabled]="page === 1"><</button>
+    <button
+      *ngFor="let pageNumber of pageNumbers"
+      (click)="page = pageNumber"
+      [disabled]="page === pageNumber"
+    >
+      {{ pageNumber }}
+    </button>
+    <button
+      (click)="page = page + 1"
+      [disabled]="page === students.length / pageSize"
+    >
+      >
+    </button>
+  </div> -->
+</div>

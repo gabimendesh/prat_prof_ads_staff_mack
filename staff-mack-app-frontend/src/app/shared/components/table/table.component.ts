@@ -15,6 +15,7 @@ columns: string[] =  [ "Aluno", "Matrícula", "Turma", "E-mail do responsável",
   
   ngOnInit(): void {
     console.log(this.students, this.page, this.pageSize)
+    console.log(this.students.map(student => Object.values(student)));
   }
 
   getColumns() {
@@ -25,11 +26,7 @@ columns: string[] =  [ "Aluno", "Matrícula", "Turma", "E-mail do responsável",
     return this.students.map(student => Object.values(student));
   }
 
-  // get totalPages(): number {
-  //   return Math.ceil(this.students.length / this.pageSize);
-  // }
-
-  // get pageNumbers(): number[] {
-  //   return Array(this.totalPages).fill(0).map((x, i) => i + 1);
-  // }
+  changePresence(student: Student, presence: boolean): void {
+    student['Presença'] = presence;
+  }
 }

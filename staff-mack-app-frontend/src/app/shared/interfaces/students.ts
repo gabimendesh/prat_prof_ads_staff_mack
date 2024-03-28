@@ -1,3 +1,3 @@
 export interface Student {
-    [key: string]: string;
+    [key: string]: string | boolean | number;
 }

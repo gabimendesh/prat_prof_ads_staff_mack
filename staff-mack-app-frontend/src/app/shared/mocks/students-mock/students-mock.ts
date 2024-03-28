@@ -5,7 +5,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'John Doe',
@@ -21,7 +21,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Caio Hopper',
@@ -29,7 +29,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Evelin Doe',
@@ -45,7 +45,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Marcus Hopper',
@@ -53,7 +53,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Luca Doe',
@@ -69,7 +69,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Silvana Hopper',
@@ -77,7 +77,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Daniela Doe',
@@ -93,7 +93,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Gabi Silva',
@@ -101,7 +101,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Marcus Hopper',
@@ -109,7 +109,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Luca Doe',
@@ -125,7 +125,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Silvana Hopper',
@@ -133,7 +133,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Daniela Doe',
@@ -149,7 +149,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Gabi Silva',
@@ -157,7 +157,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Marcus Hopper',
@@ -165,7 +165,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Luca Doe',
@@ -181,7 +181,7 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Silvana Hopper',
@@ -189,7 +189,7 @@ export const studentsMock = [
     'Turma': '3A',
     'E-mail do responsável': 'maria@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
   {
     'Aluno': 'Daniela Doe',
@@ -205,6 +205,6 @@ export const studentsMock = [
     'Turma': '3B',
     'E-mail do responsável': 'paulo@gmail.com',
     'Data': '12/12/2020',
-    'Presença': true
+    'Presença': false
   },
 ];

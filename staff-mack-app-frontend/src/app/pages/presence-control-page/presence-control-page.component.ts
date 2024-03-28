@@ -37,6 +37,15 @@ export class PresenceControlPageComponent {
       ]
     }
   ]
+  pageSize = 10;
+  page = 1;
   students: Student[] = studentsMock;
+  
+  get totalPages(): number {
+    return Math.ceil(this.students.length / this.pageSize);
+  }
 
+  get pageNumbers(): number[] {
+    return Array(this.totalPages).fill(0).map((x, i) => i + 1);
+  }
 }

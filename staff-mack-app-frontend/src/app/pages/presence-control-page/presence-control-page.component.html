@@ -12,7 +12,14 @@
             <staff-mack-filter [filters]="filters"></staff-mack-filter>
         </div>
         <div class="container-presence-table">
-            <staff-mack-table [students]="students" [page]="1" [pageSize]="10"></staff-mack-table>
+            <staff-mack-table [students]="students" [page]="page" [pageSize]="pageSize"></staff-mack-table>
+            <staff-mack-pagination
+            *ngIf="students.length > 1"
+              [page]="page"
+              [totalPages]="totalPages"
+              [pageNumbers]="pageNumbers"
+              (pageChange)="page = $event"
+            ></staff-mack-pagination>
         </div>
     </div>
 </div>

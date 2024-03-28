@@ -5,7 +5,7 @@
         <th *ngFor="let column of getColumns()">{{ column }}</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="students.length > 1">
       <tr
         *ngFor="
           let rowValues of getRows()
@@ -16,27 +16,8 @@
       </tr>
     </tbody>
   </table>
-  <staff-mack-pagination
-    [page]="page"
-    [totalPages]="totalPages"
-    [pageNumbers]="pageNumbers"
-    (pageChange)="page = $event"
-  ></staff-mack-pagination>
 
-  <!-- <div class="container-pagination-control">
-    <button (click)="page = page - 1" [disabled]="page === 1"><</button>
-    <button
-      *ngFor="let pageNumber of pageNumbers"
-      (click)="page = pageNumber"
-      [disabled]="page === pageNumber"
-    >
-      {{ pageNumber }}
-    </button>
-    <button
-      (click)="page = page + 1"
-      [disabled]="page === students.length / pageSize"
-    >
-      >
-    </button>
-  </div> -->
+  <div *ngIf="students.length <= 1" class="container-table__empty">
+    <p>Realize o filtro para registrar a presença dos alunos</p>
+
 </div>

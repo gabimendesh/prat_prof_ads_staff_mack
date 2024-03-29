@@ -1,12 +1,12 @@
-import { 
+import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit, 
-  QueryList, 
-  Renderer2, 
-  ViewChild, 
-  ViewChildren 
+  OnInit,
+  QueryList,
+  Renderer2,
+  ViewChild,
+  ViewChildren
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class NavigationMenuComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(['controle-presenca']);
+    //this.router.navigate(['controle-presenca']);
   }
 
   ngAfterViewInit(): void {

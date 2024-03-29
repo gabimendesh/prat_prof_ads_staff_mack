@@ -1,10 +1,45 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { FilterService } from '../../services/filter/filter.service';
 
 @Component({
   selector: 'staff-mack-filter',
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss'
 })
-export class FilterComponent {
+export class FilterComponent implements OnInit {
+  selectedOptions: { [key: string]: string } = {};
   @Input() filters: any = [];
+  @Output() filterChange = new EventEmitter<string>();
+
+  constructor(
+    private filterService: FilterService
+  ) {}
+
+  ngOnInit(): void {
+    for (let filter of this.filters) {
+      this.selectedOptions[this.getKeys(filter)[0]] = '';
+    }
+  }
+
+  getFilterName() {
+    return this.filters.map((filter: any) => filter);
+  }
+
+  handleOptionChange(filterName: string, selectedOption: string): void {
+    this.selectedOptions[filterName] = selectedOption;
+    this.selectedOptions = Object.keys(this.selectedOptions)
+      .filter((key) => this.selectedOptions[key] !== '' && this.selectedOptions[key] !== undefined)
+      .reduce((obj, key) => {
+        (obj as any)[key] = this.selectedOptions[key];
+        return obj;
+      }, {});
+
+    this.filterService.selectedFilter.next(this.selectedOptions);
+  }
+    
+  getKeys(obj: object): string[] {
+    return Object.keys(obj);
+  }
+
 }

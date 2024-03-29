@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { studentsMock } from '../../shared/mocks/students-mock/students-mock';
 import { Student } from '../../shared/interfaces/students';
+import { FilterService } from '../../shared/services/filter/filter.service';
 
 @Component({
   selector: 'staff-mack-presence-control-page',
   templateUrl: './presence-control-page.component.html',
   styleUrl: './presence-control-page.component.scss'
 })
-export class PresenceControlPageComponent {
+export class PresenceControlPageComponent implements OnInit {
   filters = [
     {
-      name: 'Turma',
-      options: [
+      turma: [
         { label: '1A', value: '1A' },
         { label: '1B', value: '1B' },
         { label: '1C', value: '1C' },
@@ -19,8 +19,7 @@ export class PresenceControlPageComponent {
       ]
     },
     {
-      name: 'Disciplina',
-      options: [
+      disciplina: [
         { label: 'Matemática', value: 'Matemática' },
         { label: 'Português', value: 'Português' },
         { label: 'História', value: 'História' },
@@ -28,8 +27,7 @@ export class PresenceControlPageComponent {
       ]
     },
     {
-      name: "Ano",
-      options: [
+      ano: [
         { label: '1º', value: '1' },
         { label: '2º', value: '2' },
         { label: '3º', value: '3' },
@@ -40,6 +38,18 @@ export class PresenceControlPageComponent {
   pageSize = 10;
   page = 1;
   students: Student[] = studentsMock;
+  @Input() filter!: string;
+
+  constructor(
+    private filterService: FilterService
+  ) {}
+
+  ngOnInit(): void {
+    console.log(this.filterService.selectedFilter);
+    this.filterService.selectedFilter.subscribe((filter) => {
+      console.log('filtros para tabela',filter);
+    });
+  }
   
   get totalPages(): number {
     return Math.ceil(this.students.length / this.pageSize);

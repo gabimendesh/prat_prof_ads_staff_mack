@@ -14,8 +14,8 @@ columns: string[] =  [ "Aluno", "Matrícula", "Turma", "E-mail do responsável",
 @Input() pageSize!: number;
   
   ngOnInit(): void {
-    console.log(this.students, this.page, this.pageSize)
-    console.log(this.students.map(student => Object.values(student)));
+    // console.log(this.students, this.page, this.pageSize)
+    // console.log(this.students.map(student => Object.values(student)));
   }
 
   getColumns() {

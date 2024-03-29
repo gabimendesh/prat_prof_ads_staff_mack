@@ -9,10 +9,10 @@
                 <h2 class="container-presence-control__text--title">Controle de presença</h2>
                 <!-- <p class="container-presence-control__text--description">Selecione a turma e a data para visualizar a presença dos alunos.</p> -->
             </div>
-            <staff-mack-filter (filterChange)="filter = $event" [filters]="filters"></staff-mack-filter>
+            <staff-mack-filter [filters]="filters"></staff-mack-filter>
         </div>
         <div class="container-presence-table">
-            <staff-mack-table [students]="students" [page]="page" [pageSize]="pageSize"></staff-mack-table>
+            <staff-mack-table (studentsData)="students = $event" [students]="students" [page]="page" [pageSize]="pageSize"></staff-mack-table>
             <staff-mack-pagination
             *ngIf="students.length > 1"
               [page]="page"

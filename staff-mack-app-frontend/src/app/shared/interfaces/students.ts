@@ -1,3 +1,3 @@
 export interface Student {
-    [key: string]: string | boolean | number;
+    [key: string]: string | boolean | number | string[];
 }

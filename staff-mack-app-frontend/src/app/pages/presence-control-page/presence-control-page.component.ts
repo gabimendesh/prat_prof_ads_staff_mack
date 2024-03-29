@@ -12,10 +12,10 @@ export class PresenceControlPageComponent implements OnInit {
   filters = [
     {
       turma: [
-        { label: '1A', value: '1A' },
+        { label: 'A', value: 'A' },
         { label: '1B', value: '1B' },
         { label: '1C', value: '1C' },
-        { label: '1D', value: '1D' }
+        { label: '3A', value: '3A' }
       ]
     },
     {
@@ -28,13 +28,13 @@ export class PresenceControlPageComponent implements OnInit {
     },
     {
       ano: [
-        { label: '1º', value: '1' },
+        { label: '2024', value: '2024' },
         { label: '2º', value: '2' },
         { label: '3º', value: '3' },
         { label: '4º', value: '4' }
       ]
     }
-  ]
+  ];
   pageSize = 10;
   page = 1;
   students: Student[] = studentsMock;
@@ -45,10 +45,7 @@ export class PresenceControlPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.filterService.selectedFilter);
-    this.filterService.selectedFilter.subscribe((filter) => {
-      console.log('filtros para tabela',filter);
-    });
+    console.log(this.students);
   }
   
   get totalPages(): number {

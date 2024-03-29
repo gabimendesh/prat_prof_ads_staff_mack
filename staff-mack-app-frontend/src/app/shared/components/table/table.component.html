@@ -5,23 +5,15 @@
         <th *ngFor="let column of getColumns()">{{ column }}</th>
       </tr>
     </thead>
-    <tbody *ngIf="students.length > 1">
-      <!-- <tr
-        *ngFor="
-          let rowValues of getRows()
-            | slice : (page - 1) * pageSize : page * pageSize
-        "
-      >
-        <td *ngFor="let row of rowValues">{{ row }}</td>
-      </tr> -->
+    <tbody *ngIf="filteredStudents.length > 1">
       <tr
         *ngFor="
-          let student of students
+          let student of filteredStudents
             | slice : (page - 1) * pageSize : page * pageSize
         "
       >
         <td *ngFor="let column of getColumns()">
-          <ng-container *ngIf="column === 'Presença'; else normalCell">
+          <ng-container *ngIf="column === 'presenca'; else normalCell">
             <button
               class="container-table__button left"
               [class.container-table__button--absent]="!student[column]"

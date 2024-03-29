@@ -1,210 +1,282 @@
 export const studentsMock = [
   {
-    'Aluno': 'Jane Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Jane Hopper',
+    'matricula': '123456',
+    'turma': 'A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+   'disciplina': ['Português', 'História', 'Geografia'],
+   'ano': '2024'
   },
   {
-    'Aluno': 'John Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'John Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
   },
   {
-    'Aluno': 'Julia Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Julia Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
   },
   {
-    'Aluno': 'Caio Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Caio Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Matemática', 'Português', 'História', 'Geografia'],
+    'ano': '2024'
   },
   {
-    'Aluno': 'Evelin Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Evelin Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
   },
   {
-    'Aluno': 'Gabi Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Gabi Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Marcus Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Marcus Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Luca Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Luca Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Maria Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Maria Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Silvana Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Silvana Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Daniela Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Daniela Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Wagner Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Wagner Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Gabi Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Gabi Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Marcus Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Marcus Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Matemática', 'Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Luca Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Luca Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Matemática', 'Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Maria Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Maria Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Matemática', 'Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Silvana Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Silvana Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Matemática', 'Português', 'História', 'Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Daniela Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Daniela Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Wagner Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Wagner Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Gabi Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Gabi Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Marcus Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Marcus Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Luca Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Luca Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Maria Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Maria Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Silvana Hopper',
-    'Matrícula': '123456',
-    'Turma': '3A',
-    'E-mail do responsável': 'maria@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Silvana Hopper',
+    'matricula': '123456',
+    'turma': '3A',
+    'email': 'maria@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Daniela Doe',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'john@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Daniela Doe',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'john@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
+  
   },
   {
-    'Aluno': 'Wagner Silva',
-    'Matrícula': '654321',
-    'Turma': '3B',
-    'E-mail do responsável': 'paulo@gmail.com',
-    'Data': '12/12/2020',
-    'Presença': false
+    'aluno': 'Wagner Silva',
+    'matricula': '654321',
+    'turma': 'A',
+    'email': 'paulo@gmail.com',
+    'data': '12/12/2020',
+    'presence': false,
+    'disciplina': ['Português','Geografia'],
+    'ano': '2024'
   },
 ];

@@ -1,0 +1,97 @@
+body {
+  background-color: #f18900;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+}
+
+.portal {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.acesso {
+  font-family: Poppins;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+.esquerda {
+  display: flex;
+  justify-content: flex-start;
+}
+.direita {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container {
+  background-color: #f18900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.acess:hover {
+  background-color: #ff6b00;
+}
+
+.content {
+  width: 90%;
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  background-color: #ffffff;
+  padding: 20px 20px 40px;
+  border-radius: 20px;
+}
+
+.login input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login button {
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+  background-color: #2ec4b6;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+  .content {
+    width: 30%;
+  }
+}

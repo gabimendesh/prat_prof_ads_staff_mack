@@ -1,0 +1,125 @@
+body {
+  background-color: #f18900;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+}
+
+.portal {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.acesso {
+  font-family: Poppins;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+.esquerda {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.direita {
+  text-align: right;
+  padding: 0 20px;
+}
+
+.container {
+  background-color: #f18900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
+
+p + strong {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.acess:hover {
+  background-color: #ff6b00;
+}
+
+.content {
+  width: 100%;
+  max-width: 1171px;
+  padding: 0 20px;
+  margin: auto; /* Adicionado */
+}
+
+.logo {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 80px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+  background-color: #2ec4b6;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0;
+  }
+
+  .content {
+    padding: 0;
+  }
+
+  .logo {
+    margin-bottom: 40px;
+  }
+
+  .login {
+    padding: 50px;
+  }
+}

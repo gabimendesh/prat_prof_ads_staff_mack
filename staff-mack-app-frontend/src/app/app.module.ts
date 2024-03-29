@@ -9,6 +9,8 @@ import { PresenceControlPageComponent } from './pages/presence-control-page/pres
 import { FilterComponent } from './shared/components/filter/filter.component';
 import { SearchComponent } from './shared/components/search/search.component';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './pages/login/login.component';
+import { RecuperarAcessoComponent } from './pages/recuperar-acesso/recuperar-acesso.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { SharedModule } from './shared/shared.module';
     PresenceControlPageComponent,
     ReportPageComponent,
     NavigationMenuComponent,
+    LoginComponent,
+    RecuperarAcessoComponent,
   ],
   imports: [
     BrowserModule,

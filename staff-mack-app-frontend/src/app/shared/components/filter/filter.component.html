@@ -1,0 +1,6 @@
+<div class="filters">
+    <select class="filters-item" *ngFor="let filter of filters">
+        <option class="filters-item__title" value="" disabled selected>{{filter.name}}: </option>
+        <option *ngFor="let option of filter.options">{{ option.label }}</option>
+    </select>
+  </div>

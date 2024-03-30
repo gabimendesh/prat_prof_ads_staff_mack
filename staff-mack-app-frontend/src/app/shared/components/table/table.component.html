@@ -1,0 +1,39 @@
+<div class="container-table">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of getColumns()">{{ mapColumns(column) }}</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="filteredStudents.length > 1">
+      <tr
+        *ngFor="
+          let student of filteredStudents
+            | slice : (page - 1) * pageSize : page * pageSize
+        "
+      >
+        <td *ngFor="let column of getColumns()">
+          <ng-container *ngIf="mapColumns(column) === 'presenca'; else normalCell">
+            <button
+              class="container-table__button left"
+              [class.container-table__button--absent]="!student[column]"
+              (click)="changePresence(student, false)">
+              não
+            </button>
+            <button
+              class="container-table__button right"
+              [class.container-table__button--present]="student[column]"
+              (click)="changePresence(student, true)">
+              sim
+            </button>
+          </ng-container>
+          <ng-template #normalCell>{{ student[column]  }}</ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="filteredStudents.length <= 1" class="container-table__empty">
+    <p>Realize o filtro para registrar a presença dos alunos</p>
+  </div>
+</div>

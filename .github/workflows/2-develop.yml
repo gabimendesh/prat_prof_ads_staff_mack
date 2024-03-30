@@ -39,7 +39,7 @@ jobs:
             git commit -m "Build: ${GITHUB_SHA}"
           fi
 
-  open-pr-to-develop:
+  open-pr-to-main:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -52,7 +52,6 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
-
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
@@ -61,3 +60,32 @@ jobs:
           commit-message: 'Commit from branch: ${{ env.BRANCH_NAME }}'
           branch: ${{ github.ref }}
           base: 'main'
+  deploy:
+    needs: open-pr-to-main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+  
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+  
+      - name: Install dependencies
+        run: |
+          cd staff-mack-app-frontend
+          npm install
+  
+      - name: Build
+        run: |
+          cd staff-mack-app-frontend
+          npm run build
+  
+      - name: Deploy to S3
+        run: |
+          aws s3 sync staff-mack-app-frontend/dist/staff-mack-app-frontend/browser s3://staff-mack-controle-presenca
+        env:
+          AWS_DEFAULT_REGION: sa-east-1
+          AWS_REGION: sa-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

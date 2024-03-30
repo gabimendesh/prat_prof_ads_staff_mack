@@ -1,0 +1,17 @@
+<div class="container-pagination-control">
+  <button (click)="onPageChange(page - 1)" [disabled]="page === 1"><</button>
+  <button
+    *ngFor="let pageNumber of pageNumbers"
+    (click)="onPageChange(pageNumber)"
+    [disabled]="page === pageNumber"
+    [class.active]="page === pageNumber"
+  >
+    {{ pageNumber }}
+  </button>
+  <button
+    (click)="onPageChange(page + 1)"
+    [disabled]="page === totalPages"
+  >
+    >
+  </button>
+</div>

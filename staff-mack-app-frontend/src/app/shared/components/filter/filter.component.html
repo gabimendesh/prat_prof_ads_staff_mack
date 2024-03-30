@@ -1,0 +1,15 @@
+<div class="filters">
+  <select
+    class="filters-item"
+    *ngFor="let filter of filters"
+    [(ngModel)]="selectedOptions[getKeys(filter)[0]]"
+    (change)="handleOptionChange(getKeys(filter)[0], selectedOptions[getKeys(filter)[0]])"
+  >
+    <option class="filters-item__title" value="" disabled>
+      {{ getKeys(filter)[0] }}:
+    </option>
+    <option *ngFor="let option of filter[getKeys(filter)[0]]" [value]="option">
+      {{ getOptions(option) }}
+    </option>
+  </select>
+</div>

@@ -61,6 +61,7 @@ jobs:
           branch: ${{ github.ref }}
           base: 'main'
   deploy:
+    needs: open-pr-to-main
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master

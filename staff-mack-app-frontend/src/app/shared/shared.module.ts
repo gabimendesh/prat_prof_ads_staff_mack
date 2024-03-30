@@ -7,6 +7,7 @@ import { TableColumnComponent } from './components/table/components/table-column
 import { TableRowComponent } from './components/table/components/table-row/table-row.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     FilterComponent,

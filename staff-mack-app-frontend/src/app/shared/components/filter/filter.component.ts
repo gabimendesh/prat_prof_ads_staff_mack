@@ -17,9 +17,12 @@ export class FilterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    for (let filter of this.filters) {
-      this.selectedOptions[this.getKeys(filter)[0]] = '';
-    }
+    this.filterService.filters.subscribe((filters: any) => {
+      this.filters = filters;
+      for (let filter of this.filters) {
+        this.selectedOptions[this.getKeys(filter)[0]] = '';
+      }
+    });
   }
 
   getFilterName() {
@@ -44,6 +47,21 @@ export class FilterComponent implements OnInit {
     
   getKeys(obj: object): string[] {
     return Object.keys(obj);
+  }
+
+  getOptions(value: string): string {
+    const mappingDisciplina: { [key: string]: string } = {
+      '101': 'matemática',
+      '102': 'português',
+      '103': 'artes',
+      '104': 'ciências',
+      '105': 'história',
+      '106': 'geografia',
+      '107': 'educação física',
+      '108': 'inglês',
+    }
+  
+    return mappingDisciplina[value.toString()] || value;
   }
 
 }

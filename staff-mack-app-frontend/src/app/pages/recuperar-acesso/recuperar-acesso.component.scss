@@ -42,10 +42,13 @@ body {
 }
 
 .container {
-  background-color: #4800f1;
+  background-color: #f18900;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 p {
@@ -55,10 +58,11 @@ p {
   text-align: left;
 }
 
-p + b {
+p + strong {
   font-family: "Poppins", sans-serif;
-  font-weight: 1200;
-  font-style: oblique;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
 }
 
 .acess:hover {
@@ -71,6 +75,7 @@ p + b {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
 }
 
 .logo {
@@ -83,6 +88,7 @@ p + b {
   padding: 50px;
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
 }
 
 .login input {

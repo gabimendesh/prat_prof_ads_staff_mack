@@ -14,7 +14,7 @@
         <div class="container-presence-table">
             <staff-mack-table (studentsData)="studentsFiltered = $event" [students]="students" [page]="page" [pageSize]="pageSize"></staff-mack-table>
             <staff-mack-pagination
-            *ngIf="students.length > 1"
+            *ngIf="studentsFiltered.length > 1"
               [page]="page"
               [totalPages]="totalPages"
               [pageNumbers]="pageNumbers"

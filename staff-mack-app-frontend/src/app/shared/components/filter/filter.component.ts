@@ -40,8 +40,8 @@ export class FilterComponent implements OnInit {
 
       // send the selected filter to the filter service when all options are selected
       if (Object.keys(this.selectedOptions).length === Object.keys(this.filters).length) {
+        this.filterService.selectedFilter.next(this.selectedOptions);
       }
-      this.filterService.selectedFilter.next(this.selectedOptions);
 
   }
     

@@ -69,7 +69,6 @@ export class TableComponent implements OnInit {
       
   
       let filteredStudents = [...this.students]; // Cria uma cópia do array original
-      console.log(...this.students);
       
       filteredStudents = filteredStudents.filter(item => {
         return Object.keys(filters).every((key) => {

@@ -10,7 +10,7 @@ import { FilterService } from '../../services/filter/filter.service';
 export class TableComponent implements OnInit {
 
   // columns: string[] = ["aluno", "matricula", "turma", "email", "data", "presenca"];
-  columns: string[] = [ "identificacao","nome", "turmaIdentificacao", "emailResponsavel","presenca"];
+  columns: string[] = [ "identificacao","nome", "turmaIdentificacao", "emailResponsavel","data","presenca"];
   @Input() students: Student[] = [];
   @Input() page!: number;
   @Input() pageSize!: number;
@@ -20,39 +20,6 @@ export class TableComponent implements OnInit {
   constructor(
     private filterService: FilterService
   ) { }
-
-  // ngOnInit(): void {
-  //   console.log(this.students);
-    
-  //   this.students
-  //   this.filterService.selectedFilter.subscribe((filter) => {
-  //     const filters = Object.keys(filter).reduce((result, key) => {
-  //       let value = Number(filter[key]);
-  //       (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
-  //       return result;
-  //     }, {});
-      
-  //     this.filteredStudents = this.students;
-  //     console.log(
-  //       'students filtrado', this.filteredStudents,
-  //       'students',this.students
-  //     );
-      
-  
-  //     this.filteredStudents = this.students.filter(item => {
-  //       return Object.keys(filters).every((key) => {
-  //         if (Array.isArray(item[key])) {
-  //           return (item as any)[key].includes(Number((filters as any)[key]));
-  //         } else {
-  //           return item[key] === (filters as any)[key];
-  //         }
-  //       });
-  //     });
-  //     console.log('filtradoooooooo>>>>', this.filteredStudents);
-      
-  //     this.studentsData.emit(this.filteredStudents);
-  //   });
-  // }
 
   ngOnInit(): void {}
 
@@ -78,6 +45,10 @@ export class TableComponent implements OnInit {
             return item[key] === (filters as any)[key];
           }
         });
+      }).map(student => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString('pt-BR');
+        return { ...student, data: formattedDate };
       });
   
       // console.log('filtradoooooooo>>>>', filteredStudents);

@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <th *ngFor="let column of getColumns()">{{ column }}</th>
+        <th *ngFor="let column of getColumns()">{{ mapColumns(column) }}</th>
       </tr>
     </thead>
     <tbody *ngIf="filteredStudents.length > 1">
@@ -13,7 +13,7 @@
         "
       >
         <td *ngFor="let column of getColumns()">
-          <ng-container *ngIf="column === 'presenca'; else normalCell">
+          <ng-container *ngIf="mapColumns(column) === 'presenca'; else normalCell">
             <button
               class="container-table__button left"
               [class.container-table__button--absent]="!student[column]"
@@ -27,7 +27,7 @@
               sim
             </button>
           </ng-container>
-          <ng-template #normalCell>{{ student[column] }}</ng-template>
+          <ng-template #normalCell>{{ student[column]  }}</ng-template>
         </td>
       </tr>
     </tbody>

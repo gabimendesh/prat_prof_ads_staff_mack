@@ -12,7 +12,7 @@ import { Filter } from '../../shared/interfaces/filter';
 })
 export class PresenceControlPageComponent implements OnInit {
   filters!: any[];
-  pageSize = 10;
+  pageSize = 6;
   page = 1;
   students: Student[] = [];
   studentsFiltered: Student[] = [];

@@ -13,13 +13,19 @@
         </div>
         <div class="container-presence-table">
             <staff-mack-table (studentsData)="studentsFiltered = $event" [students]="students" [page]="page" [pageSize]="pageSize"></staff-mack-table>
-            <staff-mack-pagination
-            *ngIf="studentsFiltered.length > 1"
-              [page]="page"
-              [totalPages]="totalPages"
-              [pageNumbers]="pageNumbers"
-              (pageChange)="page = $event"
-            ></staff-mack-pagination>
+            <div class="container-presence-controllers">
+                <staff-mack-pagination
+                *ngIf="students.length > 1"
+                  [page]="page"
+                  [totalPages]="totalPages"
+                  [pageNumbers]="pageNumbers"
+                  (pageChange)="page = $event"
+                ></staff-mack-pagination>
+                <div class="container-presence-controllers__send">
+                    <button class="container-presence-controllers__send--edit-btn button">Editar</button>
+                    <button class="container-presence-controllers__send--send-btn button">Enviar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

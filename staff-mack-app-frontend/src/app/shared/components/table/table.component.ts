@@ -57,7 +57,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
-    console.log(this.students);
+    // console.log(this.students);
     
     this.filterService.selectedFilter.subscribe((filter) => {
       const filters = Object.keys(filter).reduce((result, key) => {
@@ -65,7 +65,7 @@ export class TableComponent implements OnInit {
         (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
         return result;
       }, {});
-      console.log('filters', filters);
+      // console.log('filters', filters);
       
   
       let filteredStudents = [...this.students]; // Cria uma cópia do array original
@@ -80,7 +80,7 @@ export class TableComponent implements OnInit {
         });
       });
   
-      console.log('filtradoooooooo>>>>', filteredStudents);
+      // console.log('filtradoooooooo>>>>', filteredStudents);
   
       this.filteredStudents = filteredStudents;
       this.studentsData.emit(this.filteredStudents);
@@ -119,6 +119,6 @@ export class TableComponent implements OnInit {
   }
 
   changePresence(student: Student, presence: boolean): void {
-    student['Presença'] = presence;
+    student['presenca'] = presence;
   }
 }

@@ -29,5 +29,43 @@
         }
     }
 
+    .container-presence-controllers {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        height: 46px;
+        
+        &__send {
+            button {
+                height: 100%;
+                width: 100px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            &--send-btn {
+                border: none;
+                background-color: #F18900;
+                color: #FFFFFF;
+                &:hover {
+                    filter: brightness(0.9);
+                }
+                
+            }
+
+            &--edit-btn {
+                background-color: #FFFFFF;
+                margin-right: 10px;
+                color: #7E7E7E;
+                border: 1px solid #7E7E7E;
+
+                &:hover {
+                    filter: contrast(0.9);
+                }
+            }
+
+        }
+    }
+
     
 }

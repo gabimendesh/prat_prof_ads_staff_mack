@@ -83,7 +83,7 @@ jobs:
   
       - name: Deploy to S3
         run: |
-          aws s3 sync staff-mack-app-frontend/dist/staff-mack-app-frontend/browser s3://staff-mack-controle-presenca
+          aws s3 sync staff-mack-app-frontend/dist/staff-mack-app-frontend/browser s3://staff-mack-controle-presenca --delete
         env:
           AWS_DEFAULT_REGION: sa-east-1
           AWS_REGION: sa-east-1

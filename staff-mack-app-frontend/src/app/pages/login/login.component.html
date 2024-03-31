@@ -1,16 +1,17 @@
 <div class="container">
   <div class="content">
-      <div class="logo">
-          <img src="../../../assets/img/icone.svg" alt="Ícone">
-      </div>
-      <div class="login">
-          <h2 class="portal esquerda">acesso ao portal escolar</h2>
-          <form>
-              <p class="esquerda">Insira a funcional de acesso</p>
-              <input type="text" placeholder="Usuário">
-              <p class="direita acesso">recuperar acesso</p>
-              <button type="submit" class="acess">Acessar</button>
-          </form>
-      </div>
+    <div class="logo">
+      <img src="../../../assets/img/icone.svg" alt="Ícone">
+    </div>
+    <div class="login">
+      <h2 class="portal esquerda">acesso ao portal escolar</h2>
+      <form (ngSubmit)="onSubmit()">
+        <p class="esquerda">Insira a funcional de acesso</p>
+        <input type="text" id="user" name="user" [(ngModel)]="user" placeholder="Digite seu email">
+        <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Digite sua senha">
+        <p class="direita acesso"><a href="/recuperar-acesso">recuperar acesso</a></p>
+        <button type="submit" class="acess">Acessar</button>
+      </form>
+    </div>
   </div>
 </div>

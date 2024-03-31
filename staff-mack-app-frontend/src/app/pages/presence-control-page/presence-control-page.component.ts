@@ -31,7 +31,7 @@ export class PresenceControlPageComponent implements OnInit {
     
     this.studentsService.students.subscribe((students: Student[]) => {
       this.students = students;
-      this.filters = this.filterService.getFilters(this.students);
+      this.filters = this.filterService.getFilters(this.students, 'students');
       this.filterService.filters.next(this.filters);
     });
   }

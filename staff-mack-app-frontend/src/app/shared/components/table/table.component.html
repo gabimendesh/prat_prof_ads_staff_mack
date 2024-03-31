@@ -2,10 +2,10 @@
   <table>
     <thead>
       <tr>
-        <th *ngFor="let column of getColumns()">{{ mapColumns(column) }}</th>
+        <th *ngFor="let column of getColumns(type)">{{ mapColumns(column) }}</th>
       </tr>
     </thead>
-    <tbody *ngIf="filteredStudents.length > 1">
+    <tbody *ngIf="filteredStudents.length > 0">
       <tr
         *ngFor="
           let student of filteredStudents
@@ -13,8 +13,8 @@
         "
         [id]="'row-' + i"
       >
-        <td *ngFor="let column of getColumns()" [attr.id]="'cell-' + i + '-' + column">
-          <ng-container *ngIf="mapColumns(column) === 'presenca'; else normalCell">
+        <td *ngFor="let column of getColumns(type)" [attr.id]="'cell-' + i + '-' + column">
+          <ng-container *ngIf="mapColumns(column) === 'presenca' && type === 'students'; else normalCell">
             <button
               class="container-table__button left"
               [class.container-table__button--absent]="!student[column]"
@@ -28,7 +28,7 @@
               sim
             </button>
           </ng-container>
-          <ng-template #normalCell>{{ student[column]  }}</ng-template>
+          <ng-template #normalCell>{{ student[column] }}</ng-template>
         </td>
       </tr>
     </tbody>

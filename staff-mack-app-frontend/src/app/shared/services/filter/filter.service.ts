@@ -25,17 +25,27 @@ export class FilterService {
     )
   }
 
-  getFilters(data: any[]): any[] {
-    const disciplinas = [...new Set(data.flatMap(item => item.materiaCodigo))];
-    const turmas = [...new Set(data.map(item => item.turmaIdentificacao))];
-    const anos = [...new Set(data.map(item => item.turmaAno))];
+  getFilters(data: any[], type: string): any[] {
+
+    if (type === 'students') {
+      const disciplinas = [...new Set(data.flatMap(item => item.materiaCodigo))];
+      const turmas = [...new Set(data.map(item => item.turmaIdentificacao))];
+      const anos = [...new Set(data.map(item => item.turmaAno))];
+      
+      return [
+        { disciplinas: disciplinas },
+        { turma: turmas },
+        { ano: anos },
+        { aulaPeriodo: [1, 2]}
+      ];
+    } else {
+      const datas = Object.keys(data[0]);
+      console.log('criando filtros',datas);
+      return [
+        { datas: datas }
+      ];
+    }
     
-    return [
-      { disciplinas: disciplinas },
-      { turma: turmas },
-      { ano: anos },
-      { aulaPeriodo: [1, 2]}
-    ];
   }
 
 

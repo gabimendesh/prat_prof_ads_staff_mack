@@ -10,10 +10,20 @@ import { FilterService } from '../../services/filter/filter.service';
 export class TableComponent implements OnInit {
 
   // columns: string[] = ["aluno", "matricula", "turma", "email", "data", "presenca"];
-  columns: string[] = [ "identificacao","nome", "turmaIdentificacao", "emailResponsavel","data","presenca"];
-  @Input() students: Student[] = [];
+  columnsStudent: string[] = ["identificacao", "nome", "turmaIdentificacao", "emailResponsavel", "data", "presenca"];
+  columnsReport: string[] = ["alunoIdentificacao","turmaAno", "turmaIdentificacao", "data", "presente"];
+// alunoIdentificacao
+// aulaPeriodo
+// data
+// presencaMateria
+// presencaProfessor
+// presente
+// turmaAno
+// turmaIdentificacao
+  @Input() data: any = [];
   @Input() page!: number;
   @Input() pageSize!: number;
+  @Input() type!: string;
   @Output() studentsData = new EventEmitter<Student[]>();
   @Output() tableData = new EventEmitter<Student[]>();
   filteredStudents: Student[] = [];
@@ -22,7 +32,9 @@ export class TableComponent implements OnInit {
     private filterService: FilterService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   ngOnChanges(): void {
     this.filterService.selectedFilter.subscribe((filter) => {
@@ -31,26 +43,37 @@ export class TableComponent implements OnInit {
           let value = Number(filter[key]);
           (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
         }
+        if (key === 'datas') {
+          (result as any) = filter[key];
+        }
         return result;
       }, {});
-      let filteredStudents = [...this.students]; // Cria uma cópia do array original
-      console.log('filters >>>>', filters);
-      
-      filteredStudents = filteredStudents.filter(item => {
-        return Object.keys(filters).every((key) => {
-          if (Array.isArray(item[key])) {
-            return (item as any)[key].includes(Number((filters as any)[key]));
-          } else {
-            return item[key] === (filters as any)[key];
-          }
+
+
+      if (filter['datas']) {
+        this.filteredStudents = this.data[0][filters as string]
+        this.studentsData.emit(this.filteredStudents);
+
+        console.log('filters result', this.filteredStudents);
+      } else {
+        let filteredStudents = [...this.data]; // Cria uma cópia do array original
+
+        filteredStudents = filteredStudents.filter(item => {
+          return Object.keys(filters).every((key) => {
+            if (Array.isArray(item[key])) {
+              return (item as any)[key].includes(Number((filters as any)[key]));
+            } else {
+              return item[key] === (filters as any)[key];
+            }
+          });
+        }).map(student => {
+          const currentDate = new Date();
+          const formattedDate = currentDate.toLocaleDateString('pt-BR');
+          return { ...student, data: formattedDate, materiaCodigo: (filters as any)['materiaCodigo'], aulaPeriodo: Number((filter as any)['aulaPeriodo']) };
         });
-      }).map(student => {
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleDateString('pt-BR');
-        return { ...student, data: formattedDate, materiaCodigo: (filters as any)['materiaCodigo'], aulaPeriodo: Number((filter as any)['aulaPeriodo'])};
-      });
-      this.filteredStudents = filteredStudents;
-      this.studentsData.emit(this.filteredStudents);
+        this.filteredStudents = filteredStudents;
+        this.studentsData.emit(this.filteredStudents);
+      }
     });
   }
 
@@ -65,17 +88,17 @@ export class TableComponent implements OnInit {
     return mapping[key];
   }
 
-  getColumns() {
-    return this.columns;
+  getColumns(type: string) {
+    return type === 'students' ? this.columnsStudent : this.columnsReport;
   }
 
   mapColumns(data: string): string {
-    
-    const mapping: { [key: string]: string } = { 
+    const mapping: { [key: string]: string } = {
       "identificacao": "identificação",
       "nome": "aluno",
       "turmaIdentificacao": "turma",
       "emailResponsavel": "E-mail",
+      "alunoIdentificacao": "aluno",
     }
 
     return mapping[data] || data;
@@ -93,6 +116,5 @@ export class TableComponent implements OnInit {
         this.tableData.emit(this.filteredStudents);
       }
     }
-    
   }
 }

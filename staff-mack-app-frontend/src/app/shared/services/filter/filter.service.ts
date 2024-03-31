@@ -16,7 +16,7 @@ export class FilterService {
   ) { }
 
   getData(): Observable<any> {
-    return this.http.get(`$http://44.205.12.176:8080/api/alunos`,
+    return this.http.get(`$https://44.205.12.176:8080/api/alunos`,
       {
         headers: {
           'Content-Type': 'application/json',

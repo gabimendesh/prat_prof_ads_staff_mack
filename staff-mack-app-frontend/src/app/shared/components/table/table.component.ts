@@ -54,7 +54,6 @@ export class TableComponent implements OnInit {
         this.filteredStudents = this.data[0][filters as string]
         this.studentsData.emit(this.filteredStudents);
 
-        console.log('filters result', this.filteredStudents);
       } else {
         let filteredStudents = [...this.data]; // Cria uma cópia do array original
 
@@ -69,7 +68,16 @@ export class TableComponent implements OnInit {
         }).map(student => {
           const currentDate = new Date();
           const formattedDate = currentDate.toLocaleDateString('pt-BR');
-          return { ...student, data: formattedDate, materiaCodigo: (filters as any)['materiaCodigo'], aulaPeriodo: Number((filter as any)['aulaPeriodo']) };
+          return {
+            ...student,
+            aluno: student['identificacao'],
+            aulaMateria: (filters as any)['materiaCodigo'].toString(),
+            aulaPeriodo: (filter as any)['aulaPeriodo'],
+            data: formattedDate,
+            professor: "P2",
+            turmaAno: student['turmaAno'],
+            turmaIdentificacao: student['turmaIdentificacao'],
+          };
         });
         this.filteredStudents = filteredStudents;
         this.studentsData.emit(this.filteredStudents);

@@ -13,7 +13,6 @@ public class PresencaId implements Serializable {
     @Column(name = "Aluno")
     private String alunoIdentificacao;
 
-    // Mapeie a coluna "data" aqui
     @Column(name = "Data")
     private LocalDate data;
 
@@ -121,5 +120,4 @@ public class PresencaId implements Serializable {
         return Objects.hash(alunoIdentificacao, data, aulaPeriodo);
     }
 
-    // construtores, getters e setters, equals e hashCode
 }

@@ -15,9 +15,6 @@ import java.util.Optional;
 @Repository
 public interface PresencaRepository extends JpaRepository<Presenca, PresencaId> {
     List<Presenca> findById_AlunoIdentificacaoAndId_DataAndId_AulaPeriodo(String alunoIdentificacao, LocalDate data, String aulaPeriodo);
-//    @Query("SELECT NEW br.com.escolaoctogono.dto.PresencaProjectionImpl(p.id.getAluno(), p.id.getData(), p.id.getAulaPeriodo(), p.isPresente()) FROM PresencaId p WHERE p.id.getAlunoIdentificacao() = :aluno AND p.id.getData() = :data AND p.id.getAulaPeriodo() = :aulaPeriodo")
-//    Optional<PresencaProjectionImpl> findProjectionById(@Param("aluno") String aluno, @Param("data") LocalDate data, @Param("aulaPeriodo") String aulaPeriodo);
-
 
 }
 

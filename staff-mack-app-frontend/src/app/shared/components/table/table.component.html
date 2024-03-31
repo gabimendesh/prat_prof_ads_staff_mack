@@ -2,32 +2,33 @@
   <table>
     <thead>
       <tr>
-        <th *ngFor="let column of getColumns()">{{ mapColumns(column) }}</th>
+        <th *ngFor="let column of getColumns(type)">{{ mapColumns(column) }}</th>
       </tr>
     </thead>
-    <tbody *ngIf="filteredStudents.length > 1">
+    <tbody *ngIf="filteredStudents.length > 0">
       <tr
         *ngFor="
           let student of filteredStudents
-            | slice : (page - 1) * pageSize : page * pageSize
+            | slice : (page - 1) * pageSize : page * pageSize; let i = index
         "
+        [id]="'row-' + i"
       >
-        <td *ngFor="let column of getColumns()">
-          <ng-container *ngIf="mapColumns(column) === 'presenca'; else normalCell">
+        <td *ngFor="let column of getColumns(type)" [attr.id]="'cell-' + i + '-' + column">
+          <ng-container *ngIf="mapColumns(column) === 'presenca' && type === 'students'; else normalCell">
             <button
               class="container-table__button left"
               [class.container-table__button--absent]="!student[column]"
-              (click)="changePresence(student, false)">
+              (click)="changePresence(student, false, column)">
               não
             </button>
             <button
               class="container-table__button right"
               [class.container-table__button--present]="student[column]"
-              (click)="changePresence(student, true)">
+              (click)="changePresence(student, true, column)">
               sim
             </button>
           </ng-container>
-          <ng-template #normalCell>{{ student[column]  }}</ng-template>
+          <ng-template #normalCell>{{ student[column] }}</ng-template>
         </td>
       </tr>
     </tbody>

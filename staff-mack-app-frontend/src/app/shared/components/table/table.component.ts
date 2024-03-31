@@ -10,51 +10,70 @@ import { FilterService } from '../../services/filter/filter.service';
 export class TableComponent implements OnInit {
 
   // columns: string[] = ["aluno", "matricula", "turma", "email", "data", "presenca"];
-  columns: string[] = [ "identificacao","nome", "turmaIdentificacao", "emailResponsavel","data","presenca"];
-  @Input() students: Student[] = [];
+  columnsStudent: string[] = ["identificacao", "nome", "turmaIdentificacao", "emailResponsavel", "data", "presenca"];
+  columnsReport: string[] = ["alunoIdentificacao","turmaAno", "turmaIdentificacao", "data", "presente"];
+// alunoIdentificacao
+// aulaPeriodo
+// data
+// presencaMateria
+// presencaProfessor
+// presente
+// turmaAno
+// turmaIdentificacao
+  @Input() data: any = [];
   @Input() page!: number;
   @Input() pageSize!: number;
+  @Input() type!: string;
   @Output() studentsData = new EventEmitter<Student[]>();
+  @Output() tableData = new EventEmitter<Student[]>();
   filteredStudents: Student[] = [];
 
   constructor(
     private filterService: FilterService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   ngOnChanges(): void {
-    // console.log(this.students);
-    
     this.filterService.selectedFilter.subscribe((filter) => {
       const filters = Object.keys(filter).reduce((result, key) => {
-        let value = Number(filter[key]);
-        (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
+        if (key !== 'aulaPeriodo') {
+          let value = Number(filter[key]);
+          (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
+        }
+        if (key === 'datas') {
+          (result as any) = filter[key];
+        }
         return result;
       }, {});
-      // console.log('filters', filters);
-      
-  
-      let filteredStudents = [...this.students]; // Cria uma cópia do array original
-      
-      filteredStudents = filteredStudents.filter(item => {
-        return Object.keys(filters).every((key) => {
-          if (Array.isArray(item[key])) {
-            return (item as any)[key].includes(Number((filters as any)[key]));
-          } else {
-            return item[key] === (filters as any)[key];
-          }
+
+
+      if (filter['datas']) {
+        this.filteredStudents = this.data[0][filters as string]
+        this.studentsData.emit(this.filteredStudents);
+
+        console.log('filters result', this.filteredStudents);
+      } else {
+        let filteredStudents = [...this.data]; // Cria uma cópia do array original
+
+        filteredStudents = filteredStudents.filter(item => {
+          return Object.keys(filters).every((key) => {
+            if (Array.isArray(item[key])) {
+              return (item as any)[key].includes(Number((filters as any)[key]));
+            } else {
+              return item[key] === (filters as any)[key];
+            }
+          });
+        }).map(student => {
+          const currentDate = new Date();
+          const formattedDate = currentDate.toLocaleDateString('pt-BR');
+          return { ...student, data: formattedDate, materiaCodigo: (filters as any)['materiaCodigo'], aulaPeriodo: Number((filter as any)['aulaPeriodo']) };
         });
-      }).map(student => {
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleDateString('pt-BR');
-        return { ...student, data: formattedDate };
-      });
-  
-      // console.log('filtradoooooooo>>>>', filteredStudents);
-  
-      this.filteredStudents = filteredStudents;
-      this.studentsData.emit(this.filteredStudents);
+        this.filteredStudents = filteredStudents;
+        this.studentsData.emit(this.filteredStudents);
+      }
     });
   }
 
@@ -69,27 +88,33 @@ export class TableComponent implements OnInit {
     return mapping[key];
   }
 
-  getColumns() {
-    return this.columns;
+  getColumns(type: string) {
+    return type === 'students' ? this.columnsStudent : this.columnsReport;
   }
 
   mapColumns(data: string): string {
-    
-    const mapping: { [key: string]: string } = { 
+    const mapping: { [key: string]: string } = {
       "identificacao": "identificação",
       "nome": "aluno",
       "turmaIdentificacao": "turma",
       "emailResponsavel": "E-mail",
+      "alunoIdentificacao": "aluno",
     }
 
     return mapping[data] || data;
   }
 
-  getRows() {
-    return this.students.map(student => Object.values(student));
-  }
+  changePresence(student: Student, presence: boolean, column: string): void {
+    let studentReport = this.filteredStudents.find(item => {
+      return item['identificacao'] === student['identificacao'];
+    });
 
-  changePresence(student: Student, presence: boolean): void {
-    student['presenca'] = presence;
+    if (studentReport) {
+      studentReport[column] = presence;
+      // Verifica se todos os estudantes têm a propriedade 'presenca' preenchida
+      if (this.filteredStudents.every(student => student.hasOwnProperty(column))) {
+        this.tableData.emit(this.filteredStudents);
+      }
+    }
   }
 }

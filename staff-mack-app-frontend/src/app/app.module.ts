@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationMenuComponent } from './core/navigation-menu/navigation-menu.component';
@@ -23,8 +26,11 @@ import { RecuperarAcessoComponent } from './pages/recuperar-acesso/recuperar-ace
     RecuperarAcessoComponent,
   ],
   imports: [
+    FormsModule,
+    CommonModule,
     BrowserModule,
     HttpClientModule,
+    RouterModule,
     AppRoutingModule,
     SharedModule
   ],

@@ -3,6 +3,7 @@ import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,21 +11,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  user: string = '';
+  password: string = '';
 
-  onSubmit(username: string, password: string) {
-    const loginData = {
-      username: username,
-      password: password
-    };
+  constructor(private authService: AuthService) { }
 
-    this.authService.login(loginData).subscribe(
-      (response) => {
-        this.router.navigate(['/controle-presenca']);
-      },
-      (error) => {
-        this.router.navigate(['/recuperar-acesso']);
-      }
-    );
+  onSubmit() {
+    this.authService.handleLogin(this.user, this.password);
   }
 }

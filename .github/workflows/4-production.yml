@@ -24,6 +24,14 @@ jobs:
         if: "${{ github.event_name }} == 'push' && ${{ github.ref_type }} == 'tag'"
         run: "echo \"RELEASE_TAG=${GITHUB_REF#refs/tags/}\" >> $GITHUB_ENV"
         shell: "bash"
+
+      - name: "Setup GitHub token"
+        uses: actions/setup-node@v2
+        with:
+          registry-url: https://npm.pkg.github.com/
+          scope: '@your-github-username'
+          node-version: '14'
+          token: ${{ secrets.GITHUB_TOKEN }}
   
       - name: "Create release"
         uses: "actions/github-script@v7.0.1"

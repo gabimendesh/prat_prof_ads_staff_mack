@@ -13,10 +13,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
+      - name: Extract Git user name
+        run: |
+          git_user_name=$(git config --get user.name)
+          echo "::set-env name=GIT_USER_NAME::$git_user_name"
+
       - name: Set up Git
         run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "github-actions@github.com"
+          git config --local user.name "${{ env.GIT_USER_NAME }}"
+          git config --local user.email "${{ env.GIT_USER_NAME }}@github.com"
 
       - name: Get latest tag
         id: get_latest_tag

@@ -5,7 +5,7 @@ on:
       - main  # Apenas uma demonstração, você pode ajustar conforme necessário
 
 jobs:
-      # Sua configuração de construção e implantação aqui...
+  # Sua configuração de construção e implantação aqui...
 
   tag_release:
     runs-on: ubuntu-latest
@@ -18,8 +18,21 @@ jobs:
           git config --local user.name "GitHub Actions"
           git config --local user.email "github-actions@github.com"
 
-      - name: Create and push tag
+      - name: Get latest tag
+        id: get_latest_tag
         run: |
-          VERSION=$(date +'%Y%m%d-%H%M%S')  # Gera uma versão baseada na data e hora atual (exemplo)
-          git tag -a v${VERSION} -m "Release ${VERSION}"
-          git push origin v${VERSION}
+          git fetch --tags
+          echo "::set-output name=latest_tag::$(git describe --tags --abbrev=0)"
+
+      - name: Create new tag
+        run: |
+          # Extrair o número da versão da última tag
+          latest_tag=${{ steps.get_latest_tag.outputs.latest_tag }}
+          # Extrair a parte numérica da tag (removendo o prefixo 'v')
+          version=$(echo $latest_tag | sed 's/v//')
+          # Incrementar a versão
+          version=$((version + 1))
+          # Criar a nova tag
+          new_tag="v$version"
+          git tag -a $new_tag -m "Release $new_tag"
+          git push origin $new_tag

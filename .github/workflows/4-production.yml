@@ -43,6 +43,9 @@ jobs:
           git config --local user.name "GitHub Actions"
           git config --local user.email "github-actions@github.com"
 
+      # Navega para o diretório do código-fonte
+      - name: Change directory to source code
+        run: cd staff-mack-app-frontend
       # Extrai a versão do seu aplicativo (exemplo: package.json)
       - name: Extract version
         run: |

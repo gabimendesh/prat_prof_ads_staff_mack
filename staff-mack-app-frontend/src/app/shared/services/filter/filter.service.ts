@@ -40,7 +40,6 @@ export class FilterService {
       ];
     } else {
       const datas = Object.keys(data[0]);
-      console.log('criando filtros',datas);
       return [
         { datas: datas }
       ];

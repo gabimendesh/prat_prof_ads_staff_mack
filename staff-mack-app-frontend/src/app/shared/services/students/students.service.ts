@@ -15,7 +15,7 @@ export class StudentsService {
   ) { }
 
   getAllStudents(): void {
-    this.http.get(`http://44.205.12.176:8080/api/alunos`, {
+    this.http.get(`https://44.205.12.176:443/api/alunos`, {
       headers: {
         'Content-Type': 'application/json',
       }

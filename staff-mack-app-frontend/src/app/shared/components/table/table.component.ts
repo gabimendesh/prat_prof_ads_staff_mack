@@ -15,6 +15,7 @@ export class TableComponent implements OnInit {
   @Input() page!: number;
   @Input() pageSize!: number;
   @Output() studentsData = new EventEmitter<Student[]>();
+  @Output() tableData = new EventEmitter<Student[]>();
   filteredStudents: Student[] = [];
 
   constructor(
@@ -24,18 +25,16 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
-    // console.log(this.students);
-    
     this.filterService.selectedFilter.subscribe((filter) => {
       const filters = Object.keys(filter).reduce((result, key) => {
-        let value = Number(filter[key]);
-        (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
+        if (key !== 'aulaPeriodo') {
+          let value = Number(filter[key]);
+          (result as any)[this.mapFilters(key)] = isNaN(value) ? filter[key] : value;
+        }
         return result;
       }, {});
-      // console.log('filters', filters);
-      
-  
       let filteredStudents = [...this.students]; // Cria uma cópia do array original
+      console.log('filters >>>>', filters);
       
       filteredStudents = filteredStudents.filter(item => {
         return Object.keys(filters).every((key) => {
@@ -48,11 +47,8 @@ export class TableComponent implements OnInit {
       }).map(student => {
         const currentDate = new Date();
         const formattedDate = currentDate.toLocaleDateString('pt-BR');
-        return { ...student, data: formattedDate };
+        return { ...student, data: formattedDate, materiaCodigo: (filters as any)['materiaCodigo'], aulaPeriodo: Number((filter as any)['aulaPeriodo'])};
       });
-  
-      // console.log('filtradoooooooo>>>>', filteredStudents);
-  
       this.filteredStudents = filteredStudents;
       this.studentsData.emit(this.filteredStudents);
     });
@@ -85,11 +81,18 @@ export class TableComponent implements OnInit {
     return mapping[data] || data;
   }
 
-  getRows() {
-    return this.students.map(student => Object.values(student));
-  }
+  changePresence(student: Student, presence: boolean, column: string): void {
+    let studentReport = this.filteredStudents.find(item => {
+      return item['identificacao'] === student['identificacao'];
+    });
 
-  changePresence(student: Student, presence: boolean): void {
-    student['presenca'] = presence;
+    if (studentReport) {
+      studentReport[column] = presence;
+      // Verifica se todos os estudantes têm a propriedade 'presenca' preenchida
+      if (this.filteredStudents.every(student => student.hasOwnProperty(column))) {
+        this.tableData.emit(this.filteredStudents);
+      }
+    }
+    
   }
 }

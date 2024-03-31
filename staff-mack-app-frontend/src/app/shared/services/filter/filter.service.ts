@@ -34,6 +34,7 @@ export class FilterService {
       { disciplinas: disciplinas },
       { turma: turmas },
       { ano: anos },
+      { aulaPeriodo: [1, 2]}
     ];
   }
 

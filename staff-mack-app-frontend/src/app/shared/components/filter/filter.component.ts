@@ -26,18 +26,20 @@ export class FilterComponent implements OnInit {
   }
 
   getFilterName() {
+    
     return this.filters.map((filter: any) => filter);
   }
 
   handleOptionChange(filterName: string, selectedOption: string): void {
     this.selectedOptions[filterName] = selectedOption;
+
     this.selectedOptions = Object.keys(this.selectedOptions)
       .filter((key) => this.selectedOptions[key] !== '' && this.selectedOptions[key] !== undefined)
       .reduce((obj, key) => {
         (obj as any)[key] = this.selectedOptions[key];
         return obj;
       }, {});
-
+      
       // send the selected filter to the filter service when all options are selected
       if (Object.keys(this.selectedOptions).length === Object.keys(this.filters).length) {
         this.filterService.selectedFilter.next(this.selectedOptions);

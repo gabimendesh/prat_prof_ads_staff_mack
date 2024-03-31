@@ -4,6 +4,7 @@ import { Student } from '../../shared/interfaces/students';
 import { FilterService } from '../../shared/services/filter/filter.service';
 import { StudentsService } from '../../shared/services/students/students.service';
 import { Filter } from '../../shared/interfaces/filter';
+import { ReportService } from '../../shared/services/report/report.service';
 
 @Component({
   selector: 'staff-mack-presence-control-page',
@@ -12,23 +13,23 @@ import { Filter } from '../../shared/interfaces/filter';
 })
 export class PresenceControlPageComponent implements OnInit {
   filters!: any[];
-  pageSize = 6;
+  pageSize = 10;
   page = 1;
   students: Student[] = [];
   studentsFiltered: Student[] = [];
   @Input() filter!: string;
+  tableData: Student[] = [];
 
   constructor(
     private studentsService: StudentsService,
     private filterService: FilterService,
+    private reportService: ReportService
   ) {}
 
   ngOnInit(): void {
     this.studentsService.getAllStudents();
     
     this.studentsService.students.subscribe((students: Student[]) => {
-      console.log('students', students);
-      
       this.students = students;
       this.filters = this.filterService.getFilters(this.students);
       this.filterService.filters.next(this.filters);
@@ -41,5 +42,9 @@ export class PresenceControlPageComponent implements OnInit {
 
   get pageNumbers(): number[] {
     return Array(this.totalPages).fill(0).map((x, i) => i + 1);
+  }
+
+  sendReport() {
+    this.reportService.sendReport(this.tableData);
   }
 }

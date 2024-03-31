@@ -13,6 +13,8 @@ export class PaginationComponent {
   @Output() pageChange = new EventEmitter<number>();
 
   onPageChange(page: number): void {
+    console.log(page, this.pageNumbers, this.totalPages,  this.page);
+    
     this.pageChange.emit(page);
   }
 }

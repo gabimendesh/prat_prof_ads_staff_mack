@@ -26,10 +26,7 @@ export class ReportPageComponent implements OnInit {
   }
 
   get totalPages(): number {
-    console.log(this.reports, this.pageSize);
     if (this.reports.length > 0) {
-      console.log('reports',this.reports);
-      
     }
     
     return Math.ceil(this.reports.length / this.pageSize);

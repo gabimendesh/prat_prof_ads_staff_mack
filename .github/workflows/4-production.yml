@@ -12,11 +12,19 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Garante que todos os commits estejam disponíveis para acesso
 
       - name: Extract Git user name
+        id: extract_git_user
         run: |
-          git_user_name=$(git config --get user.name)
-          echo "::set-env name=GIT_USER_NAME::$git_user_name"
+          git log -1 --pretty=format:'%an' ${{ github.event.before }}..${{ github.sha }} > /tmp/git_user_name.txt
+
+      - name: Read Git user name
+        id: read_git_user
+        run: |
+          GIT_USER_NAME=$(cat /tmp/git_user_name.txt)
+          echo "::set-env name=GIT_USER_NAME::$GIT_USER_NAME"
 
       - name: Set up Git
         run: |

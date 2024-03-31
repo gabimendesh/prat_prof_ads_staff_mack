@@ -73,29 +73,6 @@ public class TurmaController {
         return ResponseEntity.ok().build();
     }
 
-//    @PutMapping("/{ano}/{identificacao}")
-//    public ResponseEntity<Turma> updateTurma(
-//            @PathVariable(value = "ano") int ano,
-//            @PathVariable(value = "identificacao") String identificacao,
-//            @RequestBody Turma turma) {
-//
-//        // Verificar se a turma existe no banco de dados
-//        Turma turmaExistente = turmaRepository.findByAnoAndIdentificacao(ano, identificacao);
-//        if (turmaExistente == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        // Atualizar os dados da turma com base nos dados recebidos no corpo da requisição
-//        turmaExistente.setAno(turma.getAno());
-//        turmaExistente.setIdentificacao(turma.getIdentificacao());
-//
-//        // Salvar a turma atualizada no banco de dados
-//        Turma turmaAtualizada = turmaRepository.save(turmaExistente);
-//
-//        // Retornar a turma atualizada com status 200 (OK)
-//        return ResponseEntity.ok().body(turmaAtualizada);
-//    }
-
 
     @PutMapping("/{ano}/{identificacao}")
     public ResponseEntity<Turma> updateTurma(@RequestBody TurmaDTO identificacaoTurmaDTO) {

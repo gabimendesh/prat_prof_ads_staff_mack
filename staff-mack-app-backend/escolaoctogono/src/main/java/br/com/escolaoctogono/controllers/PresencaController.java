@@ -27,62 +27,6 @@ public class PresencaController {
         return presencaRepository.findAll();
     }
 
-//    @PostMapping
-//    public ResponseEntity<Presenca> createPresenca(
-//            @RequestParam String aluno,
-//            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam LocalDate data,
-//            @RequestParam int turmaAno,
-//            @RequestParam String turmaIdentificacao,
-//            @RequestParam String professor,
-//            @RequestParam String aulaPeriodo,
-//            @RequestParam int aulaMateria,
-//            @RequestParam boolean presente) {
-//
-//        // Criar uma nova instância de PresencaId
-//        PresencaId id = new PresencaId();
-//        id.setAlunoIdentificacao(aluno.toUpperCase());
-//        id.setData(data);
-//        id.setTurmaAno(turmaAno);
-//        id.setTurmaIdentificacao(turmaIdentificacao.toUpperCase());
-//        id.setPresencaProfessor(professor.toUpperCase());
-//        id.setAulaPeriodo(aulaPeriodo);
-//        id.setPresencaMateria(aulaMateria);
-//
-//        // Criar uma nova instância de Presenca e definir o ID e a presença
-//        Presenca novaPresenca = new Presenca();
-//        novaPresenca.setId(id);
-//        novaPresenca.setPresente(presente);
-//
-//        // Salvar a nova presença no banco de dados
-//        Presenca presencaSalva = presencaRepository.save(novaPresenca);
-//
-//        // Retornar a resposta com a presença salva e o status CREATED
-//        return ResponseEntity.status(HttpStatus.CREATED).body(presencaSalva);
-//    }
-
-
-//    @PostMapping
-//    public ResponseEntity<Presenca> createPresenca(@RequestBody PresencaDTO presencaDTO) {
-//        // Extrair os dados do DTO e criar uma nova instância de Presenca
-//        PresencaId id = new PresencaId();
-//        id.setAlunoIdentificacao(presencaDTO.getAluno().toUpperCase());
-//        id.setData(presencaDTO.getData());
-//        id.setTurmaAno(presencaDTO.getTurmaAno());
-//        id.setTurmaIdentificacao(presencaDTO.getTurmaIdentificacao().toUpperCase());
-//        id.setPresencaProfessor(presencaDTO.getProfessor().toUpperCase());
-//        id.setAulaPeriodo(presencaDTO.getAulaPeriodo());
-//        id.setPresencaMateria(presencaDTO.getAulaMateria());
-//
-//        Presenca novaPresenca = new Presenca();
-//        novaPresenca.setId(id);
-//        novaPresenca.setPresente(presencaDTO.isPresente());
-//
-//        // Salvar a nova presença no banco de dados
-//        Presenca presencaSalva = presencaRepository.save(novaPresenca);
-//
-//        // Retornar a resposta com a presença salva e o status CREATED
-//        return ResponseEntity.status(HttpStatus.CREATED).body(presencaSalva);
-//    }
 
     @PostMapping("/presenca")
     public ResponseEntity<Presenca> createPresenca(@RequestBody PresencaDTO presencaDTO) {
@@ -148,18 +92,5 @@ public class PresencaController {
         // Retornar a presença atualizada e o status OK
         return ResponseEntity.ok().body(presencaAtualizada);
     }
-
-
-//
-//    {
-//        "data": "2025-02-02",
-//            "turmaAno": 2024,
-//            "turmaIdentificacao": "T1",
-//            "presencaProfessor": "P1",
-//            "aulaPeriodo": "1",
-//            "presencaMateria": 101,
-//            "alunoIdentificacao": "A1",
-//            "presente": true
-//    }
 
 }

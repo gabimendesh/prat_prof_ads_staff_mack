@@ -10,7 +10,6 @@ def enviar_email(dest_email, subject, body, image_path):
     outlook_server = 'smtp-mail.outlook.com'
     port = 587  # Porta padrão para TLS
 
-    # Seu endereço de e-mail e senha
     email = 'escolaoctogono@hotmail.com'
     password = 'D6c5s9t5h9f4.'
 

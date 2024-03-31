@@ -1,6 +1,5 @@
 package br.com.escolaoctogono.controllers;
 
-import br.com.escolaoctogono.dto.LoginDTO;
 import br.com.escolaoctogono.dto.ProfessorDTO;
 import br.com.escolaoctogono.models.Login;
 import br.com.escolaoctogono.models.Professor;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = {"http://localhost:4200", "https://dt95ctjg4nmhd.cloudfront.net"})
 @RestController
@@ -73,19 +71,6 @@ public class ProfessorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novoLogin);
     }
 
-//    @PutMapping("/login/{id}/{user}/{password}")
-//    public ResponseEntity<Login> updateLogin(@RequestBody Login login) {
-//        // Atualize os dados do login com base nos dados recebidos
-//        login.setIdentificacaoProfessor(login.getIdentificacaoProfessor());
-//        login.setUsuario(login.getUsuario());
-//        login.setSenha(login.getSenha());
-//
-//        // Salve o login atualizado no banco de dados
-//        Login loginAtualizado = loginRepository.save(login);
-//
-//        // Retorne uma resposta indicando o sucesso da operação
-//        return ResponseEntity.ok().body(loginAtualizado);
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Login> updateLoginPassword(@RequestBody Login login) {
@@ -98,29 +83,6 @@ public class ProfessorController {
         // Retorne uma resposta indicando o sucesso da operação
         return ResponseEntity.ok().body(loginAtualizado);
     }
-
-//    @PostMapping
-//    public ResponseEntity<Professor> createProfessor(
-//            @ApiParam(value = "Identificação do professor", required = true) @RequestParam String identificacao,
-//            @ApiParam(value = "Nome do professor", required = true) @RequestParam String nome,
-//            @ApiParam(value = "E-mail do professor", required = true) @RequestParam String email) {
-//
-//        // Verificar se a identificação está presente
-//        if (identificacao == null || identificacao.isEmpty()) {
-//            return ResponseEntity.badRequest().body(null);
-//        }
-//
-//        Professor professor = new Professor();
-//        professor.setIdentificacao(identificacao);
-//        professor.setNome(nome);
-//        professor.setEmail(email);
-//
-//        // Salvar o novo professor no banco de dados
-//        Professor novoProfessor = professorRepository.save(professor);
-//
-//        // Retornar o novo professor criado com status 201 (CREATED)
-//        return ResponseEntity.status(HttpStatus.CREATED).body(novoProfessor);
-//    }
 
     @PostMapping
     public ResponseEntity<Professor> createProfessor(@RequestBody ProfessorDTO professorDTO) {

@@ -19,7 +19,7 @@ public class Presenca {
     })
     private Turma turma;
 
-    @Transient // Adicione esta anotação para que o campo não seja persistido
+    @Transient
     private int presencaMateria;
     public boolean isPresente() {
         return presente;

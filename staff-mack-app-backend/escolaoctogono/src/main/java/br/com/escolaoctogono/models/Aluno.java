@@ -79,5 +79,4 @@ public class Aluno {
         this.turmaIdentificacao = turmaIdentificacao != null ? turmaIdentificacao.toUpperCase() : null;
     }
 
-    // Getters and setters for Turma omitted for brevity
 }

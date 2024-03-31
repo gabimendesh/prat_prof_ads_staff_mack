@@ -1,16 +1,17 @@
 <div class="container">
   <div class="content">
-      <div class="logo">
-          <img src="../../../assets/img/icone.svg" alt="Ícone">
-      </div>
-      <div class="login">
-          <h2 class="portal esquerda">acesso ao portal escolar</h2>
-          <form>
-              <p class="esquerda">Insira a funcional de acesso</p>
-              <input type="text" placeholder="Usuário">
-              <p class="direita acesso">recuperar acesso</p>
-              <button type="submit" class="acess">Acessar</button>
-          </form>
-      </div>
+    <div class="logo">
+      <img src="../../../assets/img/icone.svg" alt="Ícone">
+    </div>
+    <div class="login">
+      <h2 class="portal esquerda">acesso ao portal escolar</h2>
+      <form (submit)="onSubmit(username.value, password.value)">
+        <p class="esquerda">Insira a funcional de acesso</p>
+        <input type="text" placeholder="Usuário" #username>
+        <input type="password" placeholder="Identificação" #password>
+        <p class="direita acesso"><a href="/recuperar-acesso">recuperar acesso</a></p>
+        <button type="submit" class="acess">Acessar</button>
+      </form>
+    </div>
   </div>
 </div>

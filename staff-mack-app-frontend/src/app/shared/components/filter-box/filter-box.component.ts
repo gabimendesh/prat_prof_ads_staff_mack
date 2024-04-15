@@ -43,7 +43,6 @@ export class FilterBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterService.selectedFilter.subscribe((selectedFilter: any) => {
-      console.log(selectedFilter);
     });
     for (let filter of this.filters) {
       this.selectedOptions[filter.name] = ''; // Seleciona a primeira opção disponível para cada filtro

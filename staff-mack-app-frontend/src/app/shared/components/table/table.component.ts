@@ -9,17 +9,9 @@ import { FilterService } from '../../services/filter/filter.service';
 })
 export class TableComponent implements OnInit {
 
-  // columns: string[] = ["aluno", "matricula", "turma", "email", "data", "presenca"];
   columnsStudent: string[] = ["identificacao", "nome", "turmaIdentificacao", "emailResponsavel", "data", "presenca"];
-  columnsReport: string[] = ["alunoIdentificacao","turmaAno", "turmaIdentificacao", "data", "presente"];
-// alunoIdentificacao
-// aulaPeriodo
-// data
-// presencaMateria
-// presencaProfessor
-// presente
-// turmaAno
-// turmaIdentificacao
+  columnsReport: string[] = ["alunoIdentificacao","turmaIdentificacao", "turmaAno", "professor", "disciplina", "data", "periodo","frequencia"];
+
   @Input() data: any = [];
   @Input() page!: number;
   @Input() pageSize!: number;
@@ -107,6 +99,11 @@ export class TableComponent implements OnInit {
       "turmaIdentificacao": "turma",
       "emailResponsavel": "E-mail",
       "alunoIdentificacao": "aluno",
+      "turmaAno": "ano",
+      "professor": "professor",
+      "disciplina": "disciplina",
+      "periodo": "período",
+      "frequencia": "frequência"
     }
 
     return mapping[data] || data;

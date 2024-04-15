@@ -31,19 +31,24 @@
         </div>
 
         <div class="filter-box-container__percentage--negative">
-            <span class="filter-box-container__percentage circle"></span>
-            <span>
-              <p class="filter-box-container__percentage--positive text">
-                porcentagem de ausência geral
-                <span>25%</span>
-              </p>
-            </span>
-          </div>
+          <span class="filter-box-container__percentage circle"></span>
+          <span>
+            <p class="filter-box-container__percentage--positive text">
+              porcentagem de ausência geral
+              <span>25%</span>
+            </p>
+          </span>
+        </div>
       </div>
     </div>
 
     <div class="filter-box-container__controllers">
-      <button class="filter-box-container__controllers--clean" (click)="clearFilters()">limpar</button>
+      <button
+        class="filter-box-container__controllers--clean"
+        (click)="clearFilters()"
+      >
+        limpar
+      </button>
       <button class="filter-box-container__controllers--filter">filtrar</button>
     </div>
   </div>

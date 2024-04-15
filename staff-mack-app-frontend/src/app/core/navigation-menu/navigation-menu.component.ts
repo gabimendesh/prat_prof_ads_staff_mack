@@ -34,6 +34,8 @@ export class NavigationMenuComponent implements OnInit, AfterViewInit {
     const firstLetter = name?.[0].charAt(0);
     const lastName = name?.[name.length - 1].charAt(0);
     this.nickname = `${firstLetter}${lastName}`;
+
+    this.professorName = `${this.professorName?.split(' ')[0]} ${name?.[name.length - 1]}` ?? null;
   }
 
   ngAfterViewInit(): void {

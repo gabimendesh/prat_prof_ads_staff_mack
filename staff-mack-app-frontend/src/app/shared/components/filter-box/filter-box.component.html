@@ -1,0 +1,55 @@
+<div class="filter-box-container__box">
+  <div class="filter-box-container__text">
+    <h2 class="filter-box-container__text--title">Filtrar por:</h2>
+  </div>
+  <div class="filter-box-container__content">
+    <div class="filter-box-container__filters">
+      <div class="filter-box-container__filters--item">
+        <select
+          class="filters-item"
+          *ngFor="let filter of filters"
+          [(ngModel)]="selectedOptions[filter.name]"
+        >
+          <option class="filters-item__title" [value]="''" disabled selected>
+            {{ filter.name }}:
+          </option>
+          <option *ngFor="let option of filter.options" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
+      <div class="filter-box-container__percentage">
+        <div class="filter-box-container__percentage--positive">
+          <span class="filter-box-container__percentage circle"></span>
+          <span>
+            <p class="filter-box-container__percentage--positive text">
+              porcentagem de presença geral
+              <span>75%</span>
+            </p>
+          </span>
+        </div>
+
+        <div class="filter-box-container__percentage--negative">
+          <span class="filter-box-container__percentage circle"></span>
+          <span>
+            <p class="filter-box-container__percentage--positive text">
+              porcentagem de ausência geral
+              <span>25%</span>
+            </p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-box-container__controllers">
+      <button
+        class="filter-box-container__controllers--clean"
+        (click)="clearFilters()"
+      >
+        limpar
+      </button>
+      <button class="filter-box-container__controllers--filter">filtrar</button>
+    </div>
+  </div>
+</div>

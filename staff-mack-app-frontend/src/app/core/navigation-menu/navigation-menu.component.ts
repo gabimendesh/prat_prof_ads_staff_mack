@@ -9,6 +9,7 @@ import {
   ViewChildren
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'staff-mack-navigation-menu',
@@ -18,13 +19,21 @@ import { Router } from '@angular/router';
 export class NavigationMenuComponent implements OnInit, AfterViewInit {
   @ViewChild('navButton') navButton!: ElementRef;
   @ViewChildren('navButton') navButtons!: QueryList<ElementRef>;
+  isActive = false;
+  professorName = localStorage.getItem('professor');
+  professorPhoto = localStorage.getItem('professorPhoto');
+  nickname = '';
   constructor(
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    //this.router.navigate(['controle-presenca']);
+    const name = this.professorName?.split(' ');
+    const firstLetter = name?.[0].charAt(0);
+    const lastName = name?.[name.length - 1].charAt(0);
+    this.nickname = `${firstLetter}${lastName}`;
   }
 
   ngAfterViewInit(): void {
@@ -42,5 +51,8 @@ export class NavigationMenuComponent implements OnInit, AfterViewInit {
     });
   }
 
+  logout() {
+    this.authService.logout();
+  }
 
 }

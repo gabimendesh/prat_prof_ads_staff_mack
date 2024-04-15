@@ -20,6 +20,8 @@ export class AuthService {
     this.login(user, password).subscribe(
       (response: any) => {
         if (response.email === user) {
+          localStorage.setItem('professor', response.nome);
+          localStorage.setItem('user_logged', 'true');
           this.router.navigate(['/controle-presenca']);
         } else {
           this.router.navigate(['/recuperar-acesso']);
@@ -31,4 +33,23 @@ export class AuthService {
       }
     );
   }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user_logged');
+  }
+
+  isAuthenticated(): boolean {
+    // Verifique se o usuário está autenticado (implementação fictícia)
+    // Aqui você pode verificar se o token está presente ou se o usuário está logado de outra maneira
+    return localStorage.getItem('user_logged') !== null; // Verifica se há um token no localStorage
+  }
+
+  
+  logout(): void {
+    // Lógica de logout (geralmente limpeza de dados do usuário e redirecionamento para a página de login)
+    localStorage.removeItem('user_logged'); // Remove o token do localStorage
+    localStorage.removeItem('professor');
+    this.router.navigate(['/login']); // Redireciona para a página de login
+  }
+
 }

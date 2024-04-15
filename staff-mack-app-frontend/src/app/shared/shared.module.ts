@@ -8,6 +8,7 @@ import { TableRowComponent } from './components/table/components/table-row/table
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterBoxComponent } from './components/filter-box/filter-box.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     TableColumnComponent,
     TableRowComponent,
     PaginationComponent,
+    FilterBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     TableComponent,
     TableColumnComponent,
     TableRowComponent,
-    PaginationComponent
+    PaginationComponent,
+    FilterBoxComponent
   ]
 })
 export class SharedModule { }

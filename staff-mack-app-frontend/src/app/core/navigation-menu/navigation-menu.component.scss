@@ -54,8 +54,6 @@
         flex-direction: column;
 
         &--photo {
-            width: 64px; /* Largura do círculo */
-            height: 64px; /* Altura do círculo */
             border-radius: 50%; /* Define a forma do círculo */
             display: block;
             margin-right: 14px;
@@ -63,6 +61,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 6px;
         }
 
         &--nickname {

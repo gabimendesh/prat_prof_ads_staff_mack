@@ -1,0 +1,156 @@
+@import "../../../../styles.scss";
+
+.filter-box-container {
+    height: 100%;
+    width: 100%;
+
+    &__greetings {
+        &--text {
+            font-size: 24px;
+        }
+    }
+
+    &__box {
+        margin-top: 30px;
+        background-color: $color-white;
+        padding: 28px;
+        border-radius: 30px;
+    }
+
+    &__content {
+        display: flex;
+        width: 100%;
+    }
+
+    &__filters {
+        display: flex;
+        margin-bottom: 20px;
+        width: 100%;
+        height: 46px;
+        flex-direction: column;
+
+        &--item {
+            display: flex;
+        }
+
+        .filters-item {
+            background-color: $color-gray-secondary;
+            padding: 10px;
+            width: 100%;
+            margin-right: 16px;
+            border-radius: 10px;
+            text-transform: lowercase;
+            border: 1px solid $color-orange-primary;
+            cursor: pointer;
+            font-size: 16px;
+
+            &__title {
+                color: $color-gray-medium;
+                text-transform: lowercase;
+            }
+        }
+    }
+
+    &__controllers {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        button {
+            width: 198px;
+            height: 46px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+            border: none;
+            margin-bottom: 12px;
+        }
+
+        &--clean, --filter{
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            background-color: $color-orange-primary;
+            color: $color-white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: $color-orange-primary;
+            }
+        }
+
+        &--filter {
+            &:hover {
+                filter: brightness(0.9);
+            }
+        }
+
+        &--clean {
+            &:hover {
+                filter: contrast(0.9);
+            }
+        }
+    }
+
+    &__text {
+        &--title {
+            width: max-content;
+            margin-bottom: 30px;
+
+        }
+    }
+    
+    &__percentage {
+        display: flex;
+        margin-top: 14px;
+
+        &.circle {
+            width: 30px; /* Largura do círculo */
+            height: 30px; /* Altura do círculo */
+            border-radius: 50%; /* Define a forma do círculo */
+            display: block;
+            margin-right: 14px;
+        }
+
+        &--positive, &--negative {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+
+            &.text {
+                display: flex;
+                flex-direction: column;
+    
+                span {
+                    display: inline-flex;
+                    font-weight: 700;
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        }
+
+        &--positive {
+            .circle {
+                background-color: #00AC4F;
+            }
+        }
+
+        &--negative {
+            .circle {
+                background-color: #D00000;
+            }
+        }
+
+
+    }
+}

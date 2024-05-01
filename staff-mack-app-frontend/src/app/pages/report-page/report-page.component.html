@@ -3,13 +3,13 @@
         <h1 class="container-presence-control__greetings--text">Olá professor 👋🏼,</h1>
     </div>
 
+    <staff-mack-filter-box></staff-mack-filter-box>
+
     <div class="container-presence-control__box">
         <div class="container-presence-control__content">
             <div class="container-presence-control__text">
-                <h2 class="container-presence-control__text--title">Relatórios</h2>
-                <!-- <p class="container-presence-control__text--description">Selecione a turma e a data para visualizar a presença dos alunos.</p> -->
+                <h2 class="container-presence-control__text--title">Relatório</h2>
             </div>
-            <staff-mack-filter [filters]="filters"></staff-mack-filter>
         </div>
         <div class="container-presence-table">
             <staff-mack-table (studentsData)="reports = $event" [type]="'reports'" [data]="reports" [page]="page" [pageSize]="pageSize"></staff-mack-table>
@@ -19,12 +19,6 @@
               [pageNumbers]="pageNumbers"
               (pageChange)="page = $event"
             ></staff-mack-pagination>
-            <!-- <div class="container-presence-controllers">
-                <div class="container-presence-controllers__send">
-                    <button class="container-presence-controllers__send--edit-btn button">Editar</button>
-                    <button class="container-presence-controllers__send--send-btn button" (click)="sendReport()">Enviar</button>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

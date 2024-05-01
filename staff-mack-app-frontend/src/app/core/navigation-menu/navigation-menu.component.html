@@ -1,13 +1,10 @@
 <div class="navigation-menu-container">
-  <div class="navigation-menu">
+  <div class="navigation-menu-container__links">
     <div class="navigation-menu-logo">
       <img src="assets/img/logo-menu-octogno.svg" alt="Logo Escola Octógno" />
     </div>
     <div class="navigation-menu-item">
-      <button
-      #navButton
-        class="navigation-menu-item__presence"
-      >
+      <button #navButton class="navigation-menu-item__presence">
         <em>📄</em>
         Controle de presença
       </button>
@@ -24,5 +21,36 @@
         Ajuda
       </button>
     </div>
+  </div>
+
+  <div class="navigation-menu-container__login">
+    <span
+      class="navigation-menu-container__login--signout active"
+      [ngClass]="{ active: isActive }"
+    >
+      <button
+        class="navigation-menu-container__login--signout active"
+        (click)="logout()"
+      >
+        sair
+      </button>
+    </span>
+    <button
+      class="navigation-menu-container__login--button"
+      (click)="isActive = !isActive"
+    >
+      <span class="navigation-menu-container__login--photo">
+        <img
+          *ngIf="professorPhoto"
+          src="../../../assets/img/user.svg"
+          alt="Foto do professor"
+        />
+        <span class="navigation-menu-container__login--nickname">{{ nickname }}</span>
+      </span>
+      <p class="navigation-menu-container__login--text">
+        {{ professorName }}
+        <img src="../../../assets/img/arrow-down.svg" />
+      </p>
+    </button>
   </div>
 </div>

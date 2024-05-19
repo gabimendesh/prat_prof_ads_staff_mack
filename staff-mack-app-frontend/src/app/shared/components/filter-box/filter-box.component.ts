@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterService } from '../../services/filter/filter.service';
+import { ReportService } from '../../services/report/report.service';
 
 @Component({
   selector: 'staff-mack-filter-box',
@@ -8,22 +9,23 @@ import { FilterService } from '../../services/filter/filter.service';
 })
 export class FilterBoxComponent implements OnInit {
   selectedOptions: { [key: string]: string } = {};
+  isDisabled = true;
 
   filters = [
     {
       id: 'semana',
       name: 'semana',
-      options: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4']
+      options: ['1', '2', '3', '4', '5']
     },
     {
       id: 'mes',
       name: 'mês',
-      options: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+      options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
     },
     {
       id: 'ano',
       name: 'ano',
-      options: ['2021', '2022', '2023', '2024']
+      options: ['2024']
     },
     {
       id: 'disciplina',
@@ -33,12 +35,13 @@ export class FilterBoxComponent implements OnInit {
     {
       id: 'turma',
       name: 'turma',
-      options: ['1A', '1B', '1C', '1D', '1E', '2A', '2B', '2C', '2D', '2E', '3A', '3B', '3C', '3D', '3E', '4A', '4B', '4C', '4D', '4E', '5A', '5B', '5C', '5D', '5E']
+      options: ['T1','T2']
     }
   ];
 
   constructor(
-    private filterService: FilterService
+    private filterService: FilterService,
+    private reportService: ReportService
   ) {}
 
   ngOnInit(): void {
@@ -47,12 +50,46 @@ export class FilterBoxComponent implements OnInit {
     for (let filter of this.filters) {
       this.selectedOptions[filter.name] = ''; // Seleciona a primeira opção disponível para cada filtro
     }
-    
   }
 
   clearFilters(): void {
     for (let filter of this.filters) {
       this.selectedOptions[filter.id] = '';
     }
+  }
+
+  handleOptionChange(filterName: string, selectedOption: string): void {
+    this.selectedOptions[filterName] = selectedOption;
+
+    this.selectedOptions['disciplina'] = this.getOptions(this.selectedOptions['disciplina']);
+    
+    // send the selected filter to the filter service when all options are selected
+    if (Object.values(this.selectedOptions).every((option) => option !== '')) {
+      this.isDisabled = false;
+      this.filterService.selectedFilter.next(this.selectedOptions);
+    } else {
+      this.isDisabled = true;
+    }
+  }
+
+  sendReport() {
+    this.reportService.setReport(this.selectedOptions).subscribe((report: any) => {
+      this.reportService.report.next(report);
+    });
+  }
+
+  getOptions(value: string): string {
+    const mappingDisciplina: { [key: string]: string } = {
+      'Matemática':'101',
+      'Português':'102',
+      'Artes':'103',
+      'Ciências':'104',
+      'História':'105',
+      'Geografia':'106',
+      'Educação física':'107',
+      'Inglês':'108',
+    }
+  
+    return mappingDisciplina[value.toString()] || value;
   }
 }

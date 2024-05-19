@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Student } from '../../interfaces/students';
 import { FilterService } from '../../services/filter/filter.service';
+import { ReportService } from '../../services/report/report.service';
+import { concatMap, from, map, switchMap, toArray } from 'rxjs';
 
 @Component({
   selector: 'staff-mack-table',
@@ -19,17 +21,46 @@ export class TableComponent implements OnInit {
   @Output() studentsData = new EventEmitter<Student[]>();
   @Output() tableData = new EventEmitter<Student[]>();
   filteredStudents: Student[] = [];
+  filteredReport: any[] = [];
 
   constructor(
-    private filterService: FilterService
+    private filterService: FilterService,
+    private reportReportService: ReportService
   ) { }
 
   ngOnInit(): void {
-
   }
 
   ngOnChanges(): void {
+    
+    this.reportReportService.report.pipe(
+      switchMap((data) => {
+        return from(data).pipe(
+          concatMap((item: any) => {
+            return this.reportReportService.getProfessorById(item[4]).pipe(
+              map((professor: any) => {
+                return {
+                  alunoIdentificacao: item[1],
+                  turmaIdentificacao: item[2],
+                  turmaAno: item[3].toString(),
+                  professor: professor.nome,
+                  disciplina: item[5],
+                  periodo: item[7],
+                  data: item[6],
+                  frequencia: `${item[8]}%`
+                };
+              })
+            );
+          }),
+          toArray()
+        );
+      })
+    ).subscribe((filteredReport) => {
+      this.filteredReport = filteredReport;
+    });
+
     this.filterService.selectedFilter.subscribe((filter) => {
+
       const filters = Object.keys(filter).reduce((result, key) => {
         if (key !== 'aulaPeriodo') {
           let value = Number(filter[key]);

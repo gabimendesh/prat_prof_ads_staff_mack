@@ -5,7 +5,7 @@
         <th *ngFor="let column of getColumns(type)">{{ mapColumns(column) }}</th>
       </tr>
     </thead>
-    <tbody *ngIf="filteredStudents.length > 0">
+    <tbody *ngIf="filteredStudents.length > 0 && type === 'students'">
       <tr
         *ngFor="
           let student of filteredStudents
@@ -32,9 +32,27 @@
         </td>
       </tr>
     </tbody>
+    <!-- table for reports -->
+    <!-- table for reports -->
+    <tbody *ngIf="filteredReport.length > 0 && type === 'reports'">
+      <tr
+        *ngFor="
+          let report of filteredReport
+            | slice : (page - 1) * pageSize : page * pageSize; let i = index
+        "
+        [id]="'row-' + i"
+      >
+        <td *ngFor="let column of getColumns(type)" [attr.id]="'cell-' + i + '-' + column">
+          {{report[column]}}
+        </td>
+
+      </tr>
+    </tbody>
+    <!-- table for reports -->
+    <!-- table for reports -->
   </table>
 
-  <div *ngIf="filteredStudents.length <= 1" class="container-table__empty">
+  <div *ngIf="filteredReport.length <= 1" class="container-table__empty">
     <p>Realize o filtro para registrar a presença dos alunos</p>
   </div>
 </div>

@@ -1,16 +1,33 @@
 package br.com.escolaoctogono.controllers;
 
+import br.com.escolaoctogono.comparator.AlunoComparator;
 import br.com.escolaoctogono.dto.AlunoDTO;
+import br.com.escolaoctogono.dto.PresencaInfoDTO;
 import br.com.escolaoctogono.models.Aluno;
+import br.com.escolaoctogono.models.RelatorioAlunosPDF;
 import br.com.escolaoctogono.projections.AlunoWithMateriaCodigo;
+import br.com.escolaoctogono.repositories.AlunoAulaRepository;
 import br.com.escolaoctogono.repositories.AlunoRepository;
+import br.com.escolaoctogono.repositories.RelatorioAluno;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
+import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
+import java.io.ByteArrayOutputStream;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,6 +39,12 @@ public class AlunoController {
 
     @Autowired
     private AlunoRepository alunoRepository;
+    @Autowired
+    private AlunoAulaRepository alunoAulaRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @GetMapping
     public List<AlunoDTO> getAllAlunosWithMateriaCodigo() {
         List<AlunoWithMateriaCodigo> alunoAulas = alunoRepository.findAllAlunosWithMateriaCodigo();
@@ -71,14 +94,12 @@ public class AlunoController {
 
     @PostMapping
     public ResponseEntity<Aluno> createAluno(@ApiParam(value = "Dados do aluno", required = true) @RequestBody AlunoDTO alunoDTO) {
-        // Verificar se já existe um aluno com a identificação fornecida
+
         Aluno existingAluno = alunoRepository.findByIdentificacao(alunoDTO.getIdentificacao());
         if (existingAluno != null) {
-            // Se já existe, retornar um erro informando que o aluno já existe
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
 
-        // Se não existe, criar o novo aluno e salvar no banco de dados
         Aluno aluno = new Aluno();
         aluno.setIdentificacao(alunoDTO.getIdentificacao());
         aluno.setNome(alunoDTO.getNome());
@@ -86,10 +107,8 @@ public class AlunoController {
         aluno.setTurmaAno(alunoDTO.getTurmaAno());
         aluno.setTurmaIdentificacao(alunoDTO.getTurmaIdentificacao());
 
-        // Salvar o novo aluno no banco de dados
         Aluno novoAluno = alunoRepository.save(aluno);
 
-        // Retornar o novo aluno criado com status 201 (CREATED)
         return ResponseEntity.status(HttpStatus.CREATED).body(novoAluno);
     }
 
@@ -103,4 +122,74 @@ public class AlunoController {
         alunoRepository.delete(aluno);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/info/{id}")
+    public ResponseEntity<PresencaInfoDTO> getPercentageById(@PathVariable(value = "id") String id) {
+        try {
+            Aluno aluno = alunoRepository.findByIdentificacao(id.toUpperCase());
+
+            if (aluno == null) {
+                return ResponseEntity.notFound().build(); // Retorna status 404 Not Found
+            }
+
+            List<PresencaProjection> presencasAluno = alunoAulaRepository.findPresencasByAlunoIdentificacao(aluno.getIdentificacao());
+
+            int totalDias = presencasAluno.size();
+            long totalFaltas = presencasAluno.stream().filter(p -> !p.isPresente()).count();
+            long totalPresencas = totalDias - totalFaltas;
+
+            double porcentagemDeFaltas = ((double) totalFaltas / totalDias) * 100;
+            double porcentagemDePresencas = ((double) totalPresencas / totalDias) * 100;
+
+            PresencaInfoDTO presencaInfo = new PresencaInfoDTO(porcentagemDeFaltas, porcentagemDePresencas);
+            return ResponseEntity.ok(presencaInfo);
+
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // Retorna status 500 Internal Server Error em caso de exceção
+        }
+    }
+
+    @GetMapping("/relatorio/alunos")
+    public ResponseEntity<List<RelatorioAluno>> gerarRelatorioAlunos(
+            @RequestParam int semana,
+            @RequestParam int mes,
+            @RequestParam int ano,
+            @RequestParam String disciplina,
+            @RequestParam String turma) {
+
+        try {
+            LocalDate dataInicial = LocalDate.of(ano, mes, 1).with(TemporalAdjusters.firstDayOfMonth());
+            while (dataInicial.getDayOfWeek() != DayOfWeek.MONDAY) {
+                dataInicial = dataInicial.plusDays(1);
+            }
+            dataInicial = dataInicial.plusWeeks(semana - 1);
+
+            LocalDate dataFinal = dataInicial.plusDays(6);
+
+            String dataInicialFormatada = dataInicial.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String dataFinalFormatada = dataFinal.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            StoredProcedureQuery query = entityManager.createStoredProcedureQuery("ConsultaPresencaPorData");
+            query.registerStoredProcedureParameter("turma", String.class, ParameterMode.IN);
+            query.registerStoredProcedureParameter("dataInicial", String.class, ParameterMode.IN);
+            query.registerStoredProcedureParameter("dataFinal", String.class, ParameterMode.IN);
+            query.registerStoredProcedureParameter("disciplina", Integer.class, ParameterMode.IN);
+            query.setParameter("turma", turma);
+            query.setParameter("dataInicial", dataInicialFormatada);
+            query.setParameter("dataFinal", dataFinalFormatada);
+            query.setParameter("disciplina", Integer.parseInt(disciplina));
+
+            List<RelatorioAluno> relatorioAlunos = query.getResultList();
+
+            return new ResponseEntity<>(relatorioAlunos, HttpStatus.OK);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
 }
+
+

@@ -31,6 +31,8 @@ public class PresencaId implements Serializable {
     private int presencaMateria;
 
 
+
+
     public PresencaId(String aluno, LocalDate data, int turmaAno, String turmaIdentificacao, String professor, String aulaPeriodo, int aulaMateria) {
         this. alunoIdentificacao = aluno;
         this.data = data;

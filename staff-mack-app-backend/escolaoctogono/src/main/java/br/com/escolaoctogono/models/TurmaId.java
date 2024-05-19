@@ -16,7 +16,6 @@ public class TurmaId implements Serializable {
     @Column(name = "Identificacao", nullable = false)
     private String identificacao;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -34,31 +34,16 @@ public class TurmaController {
         return ResponseEntity.ok().body(turma);
     }
 
-
-//    @PostMapping
-//    public ResponseEntity<Turma> createTurma(
-//        @ApiParam(value = "Ano da turma", required = true) @RequestParam int turmaAno,
-//        @ApiParam(value = "Identificação da turma", required = true) @RequestParam String identificacaoTurma){
-//            Turma turma = new Turma();
-//            turma.setAno(turmaAno);
-//            turma.setIdentificacao(identificacaoTurma);
-//            Turma novaTurma = turmaRepository.save(turma);
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(novaTurma);
-//    }
-
     @PostMapping
     public ResponseEntity<Turma> createTurma(@RequestBody Turma turma) {
-        // Verificar se já existe uma turma com os mesmos dados
+
         Turma turmaExistente = turmaRepository.findByAnoAndIdentificacao(turma.getAno(), turma.getIdentificacao());
         if (turmaExistente != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null); // Turma já existe
         }
 
-        // Salvar a nova turma no banco de dados
         Turma novaTurma = turmaRepository.save(turma);
 
-        // Retornar a nova turma criada com status 201 (CREATED)
         return ResponseEntity.status(HttpStatus.CREATED).body(novaTurma);
     }
 
@@ -73,23 +58,18 @@ public class TurmaController {
         return ResponseEntity.ok().build();
     }
 
-
     @PutMapping("/{ano}/{identificacao}")
     public ResponseEntity<Turma> updateTurma(@RequestBody TurmaDTO identificacaoTurmaDTO) {
 
-        // Verificar se a turma existe no banco de dados
         Turma turmaExistente = turmaRepository.findByAnoAndIdentificacao(identificacaoTurmaDTO.getAno() , identificacaoTurmaDTO.getIdentificacao().toUpperCase());
         if (turmaExistente == null) {
             return ResponseEntity.notFound().build();
         }
 
-        // Atualizar os dados da turma com base na identificação recebida no corpo da requisição
         turmaExistente.setIdentificacao(identificacaoTurmaDTO.getIdentificacao());
 
-        // Salvar a turma atualizada no banco de dados
         Turma turmaAtualizada = turmaRepository.save(turmaExistente);
 
-        // Retornar a turma atualizada com status 200 (OK)
         return ResponseEntity.ok().body(turmaAtualizada);
     }
 

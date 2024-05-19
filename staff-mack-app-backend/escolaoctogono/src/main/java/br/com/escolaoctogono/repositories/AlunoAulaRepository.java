@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface AlunoAulaRepository extends JpaRepository<Aluno_Aula, String> {
-
     @Query("SELECT DISTINCT a FROM Aluno_Aula a WHERE a.alunoIdentificacao = :alunoIdentificacao")
     List<Aluno_Aula> findByAlunoIdentificacao(String alunoIdentificacao);
 

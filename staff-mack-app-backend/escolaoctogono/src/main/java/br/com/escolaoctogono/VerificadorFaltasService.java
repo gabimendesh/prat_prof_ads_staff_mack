@@ -47,10 +47,10 @@ public class VerificadorFaltasService {
 
     private void chamarScriptPython(String destEmail, String subject, String body) {
         try {
-
+            // Use Runtime.exec() para chamar o script Python
             Process process = Runtime.getRuntime().exec("python enviar_email.py " + destEmail + " \"" + subject + "\" \"" + body + "\" escola.png");
 
-            process.waitFor();
+            process.waitFor(); // Espere o término do processo
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

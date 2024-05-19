@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 public class EscolaOctogonoApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(EscolaOctogonoApplication.class, args);
+    public static void main(String[] args) {SpringApplication.run(EscolaOctogonoApplication.class, args);
     }
 }

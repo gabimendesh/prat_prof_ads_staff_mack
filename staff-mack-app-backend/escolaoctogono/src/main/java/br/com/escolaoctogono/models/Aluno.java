@@ -25,6 +25,7 @@ public class Aluno {
     @Column(name = "Turma_Identificacao")
     private String turmaIdentificacao;
 
+
     @ManyToOne
     @JoinColumns({
             @JoinColumn(name = "Turma_Ano", referencedColumnName = "Ano", insertable = false, updatable = false),
@@ -78,5 +79,4 @@ public class Aluno {
 
         this.turmaIdentificacao = turmaIdentificacao != null ? turmaIdentificacao.toUpperCase() : null;
     }
-
 }

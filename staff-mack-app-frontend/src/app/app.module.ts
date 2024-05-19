@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,8 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthService } from './auth.service';
 import { RecuperarAcessoComponent } from './pages/recuperar-acesso/recuperar-acesso.component';
+import { LoaderModule } from './shared/components/loader/loader.module';
+import { LoaderInterceptor } from './shared/components/loader/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,10 +34,13 @@ import { RecuperarAcessoComponent } from './pages/recuperar-acesso/recuperar-ace
     HttpClientModule,
     RouterModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    LoaderModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

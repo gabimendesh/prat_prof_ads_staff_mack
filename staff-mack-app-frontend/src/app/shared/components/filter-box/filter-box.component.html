@@ -9,7 +9,8 @@
           class="filters-item"
           *ngFor="let filter of filters"
           [(ngModel)]="selectedOptions[filter.name]"
-        >
+          (change)="handleOptionChange(filter.name, selectedOptions[filter.name])"
+          >
           <option class="filters-item__title" [value]="''" disabled selected>
             {{ filter.name }}:
           </option>
@@ -49,7 +50,7 @@
       >
         limpar
       </button>
-      <button class="filter-box-container__controllers--filter">filtrar</button>
+      <button class="filter-box-container__controllers--filter" [disabled]="isDisabled" (click)="sendReport()">filtrar</button>
     </div>
   </div>
 </div>

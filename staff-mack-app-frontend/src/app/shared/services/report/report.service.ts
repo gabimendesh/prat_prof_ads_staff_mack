@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Student } from '../../interfaces/students';
-import { map } from 'rxjs';
+import { Subject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReportService {
   apiBaseUrl = 'https://44.205.12.176/api';
+  report: Subject<any[]> = new Subject<any[]>();
+
 
   constructor(
     private http: HttpClient
@@ -18,7 +20,7 @@ export class ReportService {
     turma.forEach((student) => {
       let dateParts = (student['data'] as string).split('/');
       let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
-      
+
       this.http.post(`${this.apiBaseUrl}/presencas/presenca`, {
         "aluno": student['aluno'],
         "aulaMateria": student['aulaMateria'],
@@ -50,4 +52,18 @@ export class ReportService {
       })
     )
   }
+
+  setReport(params: { [key: string]: string }): any {
+    return this.http.get<any[]>(`https://44.205.12.176:443/api/alunos/relatorio/alunos?semana=${params['semana']}&mes=${params['mês']}&ano=${params['ano']}&disciplina=${params['disciplina']}&turma=${params['turma']}`).pipe(
+      map((data: any[]) => {
+        return data
+      })
+    );
+  }
+
+  getProfessorById(id: string) {
+    return this.http.get<any[]>(`https://44.205.12.176:443/api/professores/${id}`)
+  }
+
+
 }

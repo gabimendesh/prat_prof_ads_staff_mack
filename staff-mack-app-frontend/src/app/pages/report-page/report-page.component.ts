@@ -22,6 +22,7 @@ export class ReportPageComponent implements OnInit {
     this.reportReportService.getReport().subscribe((groupedData: any) => {
       this.reports =  [groupedData];
       this.filters = this.filterService.getFilters(this.reports, 'reports');
+      this.setReportsData();
     });
   }
 
@@ -34,5 +35,11 @@ export class ReportPageComponent implements OnInit {
 
   get pageNumbers(): number[] {
     return Array(this.totalPages).fill(0).map((x, i) => i + 1);
+  }
+
+  setReportsData() {
+    this.reportReportService.report.subscribe((data) => {
+      this.reports = data;
+    });
   }
 }
